@@ -12,15 +12,15 @@ export default {
 }
 </script>
 <template>
-    <div class="card" style="width: 100%;">
-        <img v-if="resturant.cover_image === null" :src="`${store.basicUrl}/storage/cover_images/default.png`" class="img-fluid">
+    <router-link :to="{name: 'menu',params: {slug: resturant.slug} }" class="card" style="width: 100%;" >
+        <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
         <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
         <div class="card-body">
             <h5 class="card-title">{{ resturant.name }}</h5>
             <p class="card-text d-none d-md-block">{{ resturant.address }}</p>
             <span class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">{{ type.name }}</span>
         </div>
-    </div>
+    </router-link>
 </template>
 <style lang="scss" scoped>
 .card {
