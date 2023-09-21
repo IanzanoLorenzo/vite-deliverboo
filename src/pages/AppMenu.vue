@@ -50,6 +50,7 @@ export default {
 
         // Salva il carrello in localStorage per la persistenza
         localStorage.setItem('cart', JSON.stringify(this.cart));
+
         this.totalPrice();
         },
 
