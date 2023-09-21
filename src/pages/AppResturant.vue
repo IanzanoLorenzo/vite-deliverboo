@@ -1,10 +1,11 @@
 <script>
 import axios from 'axios';
+import { store } from '../store';
 export default {
     data() {
         return {
+            store,
             axios,
-            resturants: '',
             search: '',
         }
     },
@@ -14,9 +15,11 @@ export default {
     methods: {
         //CHIAMATA AXIOS
         getResturants(){
+           if(store.resturants){
             axios.get('http://127.0.0.1:8000/api/resturants').then((risp) =>{
-                this.resturants = risp.data.response;
+                store.resturants = risp.data.response;
             })
+           }
         },
     },
 }
@@ -27,7 +30,7 @@ export default {
         <div class="col-6 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search" v-model="search">
         </div>
-        <div v-for="resturant in resturants" :key="resturant.id">
+        <div v-for="resturant in store.resturants" :key="resturant.id">
             <h1 v-if="resturant.name.toLowerCase().includes(search.toLowerCase())">{{ resturant.name }}</h1>
         </div>
     </div>
