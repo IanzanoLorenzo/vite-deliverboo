@@ -9,7 +9,6 @@ export default {
         }
     },
     mounted() {
-        console.log('ziopera');
         this.getResturants();
     },
     methods: {
