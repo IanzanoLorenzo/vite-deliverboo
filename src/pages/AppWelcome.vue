@@ -1,7 +1,7 @@
 <script>
 import { store } from '../store';
 import AppJumbotron from '../components/AppJumbotron.vue';
-import AppResturant from '../pages/AppResturant.vue';
+import AppResturant from '../components/AppResturant.vue';
 
 export default {
     name: 'AppWelcome',
