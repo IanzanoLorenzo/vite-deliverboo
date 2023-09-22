@@ -6,7 +6,7 @@ export default {
 </script>
 <template>
     <div>
-        <h1>Ciaobestie</h1>
+        <h1>Benvenuti su DeliveBoo</h1>
     </div>
 </template>
 <style lang="scss" scoped>
