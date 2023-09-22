@@ -2,61 +2,66 @@
 import axios from 'axios';
 import { store } from '../store';
 import ResturantCard from '../components/ResturantCard.vue';
+
 export default {
     components:{
         ResturantCard
     },
     data() {
         return {
-            store,
+            store, 
             axios,
-            search: 0,
+            selected_type: [],
         }
     },
     mounted() {
-        this.getResturants();
+        try{
+            this.getResturants();
+        }catch(error){
+            console.error('c\'è stato un problema con la chiamata api')
+        }
     },
     methods: {
-        //CHIAMATA AXIOS
+        // Funzione per ottenere i ristoranti tramite una chiamata Axios
         getResturants(){
            if(this.store.resturants === null || this.store.resturants === undefined){
-            axios.get(this.store.basicUrl+'api/resturants').then((risp) =>{
-                this.store.resturants = risp.data.response.resturants;
-                this.store.types = risp.data.response.types;
-                console.log(risp.data);
-
-            })
-           }
+                axios.get(this.store.basicUrl+'api/resturants').then((risp) =>{
+                    // Memorizza i ristoranti e i tipi di ristoranti nello store
+                    this.store.resturants = risp.data.response.resturants;
+                    this.store.types = risp.data.response.types;
+                })
+            }
         },
+        // Funzione per determinare se mostrare un ristorante in base alla selezione dell'utente
         showResturant(types){
-            if(this.search !== 0){
-                let flag = false
+            let flag = true
+            if(this.select_type !== ''){
+                flag = false
                 types.forEach(type => {
-                    if(type.id == this.search){
+                    if(type.id == this.select_type){
                         flag = true
                     }
                 });
-                return flag
-            }else{
-                return true
             }
+            return flag
         },
     },
 }
 </script>
 <template>
-    <div class="row mt-5">
-        <!--ALTERNATIVA AL BOTTONE SEARCH: @keyup="getResturants(search)" -->
-        <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
-            <label for="" class="form-label text-white">Cerca tra i ristoranti:</label>
-            <select name="" id="" v-model="search">
-                <option value="0">Nessun tipo</option>
-                <option v-for="type in store.types" :key="type.id" :value="type.id">{{ type.name }}</option>
-            </select>
-        </div>
-        <div class="row">
-            <div class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id" v-show="showResturant(resturant.types)">
-                <ResturantCard :resturant="resturant"/>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
+                <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
+                    <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id">
+                    <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
+                <div class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id" v-show="showResturant(resturant.types)">
+                    <ResturantCard :resturant="resturant"/>
+                </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@ export default {
 </script>
 <template>
     <div>
-        <h1>Footer</h1>
+        <h2>Footer</h2>
     </div>
 </template>
 <style lang="scss">
