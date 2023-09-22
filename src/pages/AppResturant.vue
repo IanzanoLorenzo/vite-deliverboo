@@ -39,36 +39,6 @@ export default {
                 })
             }
         },
-        // Funzione per determinare se mostrare un ristorante in base alla selezione dell'utente
-        // showResturant(types){
-        //     let flag = true
-        //     if(this.selected_type.length > 0){
-        //         flag = false
-        //         types.forEach(type => {
-        //             if(this.selected_type.includes(type.id)){
-        //                 flag = true
-        //             }
-        //         });
-        //     }
-        //     return flag
-        // },
-        // showResturant(types){
-        //     let flag = true
-        //     if(this.selected_type.length > 0){
-        //         flag = false
-        //         let restTypes = types.map((type) => type.id );
-        //         let count = 0;
-        //         this.selected_type.forEach(type => {
-        //             if(restTypes.includes(type)){
-        //                 count++;
-        //             }
-        //         })
-        //         if(count === this.selected_type.length){
-        //             flag = true
-        //         }
-        //     }
-        //     return flag
-        // },
     },
 }
 </script>
