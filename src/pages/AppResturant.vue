@@ -24,8 +24,15 @@ export default {
     methods: {
         // Funzione per ottenere i ristoranti tramite una chiamata Axios
         getResturants(){
-           if(this.store.resturants === null || this.store.resturants === undefined){
+            if(this.selected_type.length === 0){
                 axios.get(this.store.basicUrl+'api/resturants').then((risp) =>{
+                    // Memorizza i ristoranti e i tipi di ristoranti nello store
+                    this.store.resturants = risp.data.response.resturants;
+                    this.store.types = risp.data.response.types;
+                })
+            } else {
+                let search =  this.selected_type.join('-');
+                axios.get(this.store.basicUrl+'api/resturants/search/'+search).then((risp) =>{
                     // Memorizza i ristoranti e i tipi di ristoranti nello store
                     this.store.resturants = risp.data.response.resturants;
                     this.store.types = risp.data.response.types;
@@ -45,23 +52,23 @@ export default {
         //     }
         //     return flag
         // },
-        showResturant(types){
-            let flag = true
-            if(this.selected_type.length > 0){
-                flag = false
-                let restTypes = types.map((type) => type.id );
-                let count = 0;
-                this.selected_type.forEach(type => {
-                    if(restTypes.includes(type)){
-                        count++;
-                    }
-                })
-                if(count === this.selected_type.length){
-                    flag = true
-                }
-            }
-            return flag
-        },
+        // showResturant(types){
+        //     let flag = true
+        //     if(this.selected_type.length > 0){
+        //         flag = false
+        //         let restTypes = types.map((type) => type.id );
+        //         let count = 0;
+        //         this.selected_type.forEach(type => {
+        //             if(restTypes.includes(type)){
+        //                 count++;
+        //             }
+        //         })
+        //         if(count === this.selected_type.length){
+        //             flag = true
+        //         }
+        //     }
+        //     return flag
+        // },
     },
 }
 </script>
@@ -73,10 +80,11 @@ export default {
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
                 </div>
+                <button class="btn btn-primary" @click="getResturants()">Filtra</button>
             </div>
             <div class="row">
                 <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                <div class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id" v-show="showResturant(resturant.types)">
+                <div class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id">
                     <ResturantCard :resturant="resturant"/>
                 </div>
             </div>
