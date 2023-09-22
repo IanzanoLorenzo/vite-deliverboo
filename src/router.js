@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';  
 import AppWelcome from './pages/AppWelcome.vue';
-import AppResturant from './pages/AppResturant.vue';
 import AppMenu from './pages/AppMenu.vue';
 
 
@@ -11,11 +10,6 @@ const router = createRouter({
             path:'/',
             name:'home',
             component: AppWelcome
-        },
-        {
-            path:'/resturants',
-            name:'resturants',
-            component: AppResturant
         },
         {
             path: '/resturants/:slug',
