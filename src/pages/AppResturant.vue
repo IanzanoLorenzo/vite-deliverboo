@@ -43,7 +43,7 @@ export default {
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container pad-bot">
         <div class="row mt-5">
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
@@ -62,5 +62,7 @@ export default {
     </div>
 </template>
 <style lang="scss">
-    
+  .pad-bot{
+    padding-bottom: 100px;
+  }  
 </style>
