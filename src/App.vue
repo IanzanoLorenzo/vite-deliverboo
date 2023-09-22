@@ -31,5 +31,6 @@ body{
   font-family: 'Montserrat', sans-serif;
   background-repeat: no-repeat;
   min-height: 100vh;
+  position: relative;
 }
 </style>
