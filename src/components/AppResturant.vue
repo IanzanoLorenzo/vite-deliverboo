@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import ResturantCard from '../components/ResturantCard.vue';
+import ResturantCard from './ResturantCard.vue';
 
 export default {
     components:{
