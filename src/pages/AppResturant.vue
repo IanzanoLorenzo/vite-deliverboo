@@ -35,13 +35,18 @@ export default {
         // Funzione per determinare se mostrare un ristorante in base alla selezione dell'utente
         showResturant(types){
             let flag = true
-            if(this.select_type !== ''){
+            if(this.selected_type.length > 0){
                 flag = false
-                types.forEach(type => {
-                    if(type.id == this.select_type){
-                        flag = true
+                let restTypes = types.map((type) => type.id );
+                let count = 0;
+                this.selected_type.forEach(type => {
+                    if(restTypes.includes(type)){
+                        count++;
                     }
-                });
+                })
+                if(count === this.selected_type.length){
+                    flag = true
+                }
             }
             return flag
         },
@@ -53,7 +58,7 @@ export default {
         <div class="row mt-5">
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
-                    <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id">
+                    <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
                 </div>
             </div>
