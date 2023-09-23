@@ -14,16 +14,10 @@ export default {
         }
     },
     mounted() {
-        // Recupera i dati del carrello dalla memoria locale, se presenti
-        const storedCart = localStorage.getItem('cart');
-
-        if (storedCart) {
-            this.cart = JSON.parse(storedCart);
-        }
-
+        //localStorage.clear();
         // Effettua una chiamata API per ottenere i piatti in base al parametro del percorso (slug)
         this.getDishes(this.$route.params.slug);
-
+        
         // Calcola il prezzo totale iniziale
         this.totalPrice();
     },
@@ -35,6 +29,12 @@ export default {
                 this.dishes = response.data.response.dishes;
                 //memorizzo l'id del ristorante
                 this.resturant_id = response.data.response.resturant;
+                // Recupera i dati del carrello dalla memoria locale, se presenti
+                const storedCart = localStorage.getItem(this.resturant_id);
+            
+                if (storedCart) {
+                    this.cart = JSON.parse(storedCart);
+                }
             });
         },
         addToCart(dish) {
@@ -55,12 +55,11 @@ export default {
             }
 
             // Salva il carrello aggiornato nella memoria locale per la persistenza
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+            localStorage.setItem(this.resturant_id, JSON.stringify(this.cart));
 
             // Ricalcola il prezzo totale
             this.totalPrice();
         },
-
         removeFromCart(dish, index){
             // Verifica se il piatto è presente nel carrello
             const existingDish = this.cart.find(item => item.id === dish.id);
@@ -73,8 +72,12 @@ export default {
                 this.cart.splice(index, 1)
             }
 
-            // Salva il carrello aggiornato nella memoria locale
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+            if(this.cart.length > 0){
+                // Salva il carrello aggiornato nella memoria locale
+                localStorage.setItem(this.resturant_id, JSON.stringify(this.cart));
+            } else {
+                localStorage.removeItem(this.resturant_id)
+            }
 
             // Ricalcola il prezzo totale
             this.totalPrice();
