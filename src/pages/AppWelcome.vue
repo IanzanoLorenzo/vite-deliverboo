@@ -19,7 +19,7 @@ export default {
 <template>
     <AppJumbotron/>
     <div class="container">
-        <h2>Benvenuti su DeliveBoo</h2>
+
         <AppResturant/>
         
     </div>
