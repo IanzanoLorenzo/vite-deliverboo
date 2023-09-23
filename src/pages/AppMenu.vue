@@ -9,7 +9,8 @@ export default {
             axios, // Oggetto Axios per le richieste HTTP
             dishes: '', // Conserva i piatti recuperati dalla chiamata API
             cart: [], // Array per memorizzare gli elementi nel carrello
-            priceTotal: 0 // Prezzo totale degli elementi nel carrello
+            priceTotal: 0, // Prezzo totale degli elementi nel carrello
+            resturant_id: 0
         }
     },
     mounted() {
@@ -31,7 +32,9 @@ export default {
             // Effettua una richiesta GET all'API per ottenere i piatti in base allo slug
             axios.get(this.store.basicUrl + 'api/resturants/' + slug).then((response) =>{
                 // Memorizza i piatti recuperati nella variabile 'dishes'
-                this.dishes = response.data.response;
+                this.dishes = response.data.response.dishes;
+                //memorizzo l'id del ristorante
+                this.resturant_id = response.data.response.resturant;
             });
         },
         addToCart(dish) {
