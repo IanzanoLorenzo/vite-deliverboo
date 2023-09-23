@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';  
 import AppWelcome from './pages/AppWelcome.vue';
 import AppMenu from './pages/AppMenu.vue';
+import AppCheckOut from './pages/AppCheckOut.vue'
 
 
 const router = createRouter({
@@ -10,6 +11,11 @@ const router = createRouter({
             path:'/',
             name:'home',
             component: AppWelcome
+        },
+        {
+            path:'/checkout',
+            name:'checkout',
+            component: AppCheckOut
         },
         {
             path: '/resturants/:slug',
