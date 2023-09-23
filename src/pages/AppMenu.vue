@@ -99,26 +99,70 @@ export default {
 }
 </script>
 <template>
-    <div>
-        <div class="d-flex" v-for="dish in dishes" :key="dish.id">
-            <p>{{ dish.name }}</p>
-            <p>{{ dish.price }}€</p>
-            <button @click="addToCart(dish)">Aggiungi al carrello</button>
+    <!-- Inizia il contenitore principale -->
+    <div class="container pt-5 padd-b">
+        <div class="row padd-b">
+            <div class="col-10 offset-1">
+                <!-- Lista dei piatti disponibili -->
+                <ul class="list-group list-group-flush">
+                    <!-- Titolo del menu -->
+                    <li class="list-group-item">
+                        <h1 class="text-center fnt-write fw-bold">IL TUO MENU'</h1>
+                    </li>
+                    <!-- Iterazione sui piatti nel menu -->
+                    <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
+                        <!-- Nome del piatto -->
+                        <h2 class="text-primary fw-bold">{{ dish.name }}</h2>
+                        <!-- Ingredienti del piatto -->
+                        <span><em>{{ dish.ingredients }}</em></span>
+                        <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
+                        <div class="d-flex justify-content-between">
+                            <span>{{ dish.price }}€</span>
+                            <button class="col-2 text-white btn bg-primary" @click="addToCart(dish)">Aggiungi al carrello</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 offset-1">
+                <!-- Lista dei piatti nel carrello -->
+                <ul class="list-group list-group-flush">
+                    <!-- Titolo del carrello -->
+                    <li class="list-group-item">
+                        <h2 class="text-center fnt-write fw-bold">IL TUO CARRELLO</h2>
+                    </li>
+                    <!-- Iterazione sugli elementi nel carrello -->
+                    <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
+                        <!-- Nome del piatto nel carrello -->
+                        <h3 class="text-primary fw-bold">{{ item.name }}</h3>
+                        <!-- Prezzo del piatto nel carrello -->
+                        <span>{{ item.price }}€</span>
+                        <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
+                        <div class="d-flex justify-content-between">
+                            <span>Quantità: {{ item.quantity }}</span>
+                            <button class="col-2 text-white btn bg-primary" @click="removeFromCart(item, index)">Rimuovi</button>
+                        </div>
+                    </li>
+                    <!-- Riepilogo dell'ordine -->
+                    <div class="card">
+                        <h2 class="text-danger fw-bold text-center">RIEPILOGO ORDINE</h2>
+                        <!-- Visualizzazione del prezzo totale -->
+                        <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
+                    </div>
+                </ul>
+                <!-- Fine lista del carrello -->
+            </div>
         </div>
     </div>
-    <div>
-        <h2>Carrello</h2>
-        <div class="d-flex" v-for="(item, index) in cart" :key="item.id">
-            <p>{{ item.name }}</p>
-            <p>{{ item.price }}€</p>
-            <p>Quantità: {{ item.quantity }}</p>
-            <button @click="removeFromCart(item , index)">Rimuovi</button>
-        </div>
-        <div>
-          Prezzo Totale:  {{ priceTotal }}€
-        </div>
-    </div>
+    <!-- Fine del contenitore principale -->
 </template>
 <style lang="scss">
-    
+    .padd-b{
+        padding-bottom: 100px;
+    }
+
+    .fnt-write{
+        font-size: 70px;
+    }
 </style>
