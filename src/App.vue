@@ -15,15 +15,15 @@ export default {
 }
 </script>
 <template>
-  <div>
+  
     <AppHeader/>
     <router-view></router-view>
     <AppFooter/>
-  </div>
+  
 </template>
 <style lang="scss">
 $light: #dbdfe2;
-$dark: #2c2c2c;
+$dark: #0e0a0a;
 $danger: #ff0000;
 $primary: #ac0a55;
 $warning:  #ff8800;
