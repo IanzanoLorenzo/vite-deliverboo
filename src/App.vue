@@ -22,13 +22,8 @@ export default {
   
 </template>
 <style lang="scss">
-$light: #dbdfe2;
-$dark: #0e0a0a;
-$danger: #ff0000;
-$primary: #ac0a55;
-$warning:  #ff8800;
-@use './styles/_variables.scss';
-@use './styles/generals.scss';
+@import './styles/_variables.scss';
+@import './styles/generals.scss';
 
 body{
   background: linear-gradient(200deg , $warning 500px, $danger 500px);
