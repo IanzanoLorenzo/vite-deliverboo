@@ -53,7 +53,7 @@ header{
     //box-shadow: 2 2px 4px rgba(2, 2, 2, 1);
     //position:fixed
     //background-color: $light !important;
-    box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 5),
+    box-shadow: 0px 0px 6.5px 0.5px rgb(33, 24, 53)
 }
 
 .logo_delive{

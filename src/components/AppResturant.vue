@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            store, 
+            store,
             axios,
             selected_type: [],
         }
@@ -44,8 +44,18 @@ export default {
 </script>
 <template>
     <div class="container pad-bot">
+
+        <!-- PARAGRAFO -->
+         <h3 class="text-white mb-3 pt-5"><!----- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
+            Che tu stia cercando i sapori autentici della cucina italiana, l'esotismo delle spezie orientali
+            o un gustoso hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
+            <br><br>
+            Quale tipo di cucina vuoi provare oggi?
+        </h3>
         <div class="row mt-5">
+            <!-- RICERCA PER TIPOLOGIA  -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
+                <!-- CHECKBOX -->
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
@@ -64,5 +74,5 @@ export default {
 <style lang="scss">
   .pad-bot{
     padding-bottom: 100px;
-  }  
+  }
 </style>
