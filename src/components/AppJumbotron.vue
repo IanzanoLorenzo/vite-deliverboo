@@ -19,18 +19,12 @@ export default {
             <div class="row h-100 ">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <!-- BOX BLUR -->
-                    <div class="text-center transbox">
+                    <div class="text-center trans_box">
                         <!-- SLOGAN -->
-                        <h1> Portiamo il sapore del mondo direttamente a casa tua!</h1>
-
-                        <figure class="text-center">
-                            <blockquote class="blockquote fs-4">
-                                <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
-                            </blockquote>
-                            <figcaption class="blockquote-footert">
-                                <cite title="Source Title quote_cit">Alice Waters</cite>
-                            </figcaption>
-                        </figure>
+                        <h2>
+                            Portiamo il sapore del mondo <br> direttamente a casa tua!
+                        </h2>
+                        
                     </div>
                     <!-- FINE BOX BLUR -->
                 </div>
@@ -40,25 +34,27 @@ export default {
     
 </template>
 <style lang="scss">
-
+@import '../styles/_variables.scss';
+@import '../styles/generals.scss';
 .carbojumbotron{
     background-image: url(../assets/img/carbojumbotron.jpg);
     height: 600px;
     background-position: center;
-    backdrop-filter: blur(2px);
+    background-size: cover ;
+    background-repeat: no-repeat;
     
-    .transbox{
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(2.5px);
-        padding: 50px;
+    .trans_box{
+        background-color: rgba(255, 255, 255, 0.589);
+        backdrop-filter: blur(3px);
+        padding: 30px;
         margin: 30px;
-        border-radius: 20px;
+        border-radius: 10px;
+        //box-shadow: 0px 6mm 5px 5px rgb(99, 99, 99);
 
-        .quote_cit{
-            color:red !important;
-
-        }
+        position:relative;
+        top: 260px
     }
+
 }
     
 </style>
