@@ -17,8 +17,12 @@ export default {
         <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
         <div class="card-body">
             <h5 class="card-title">{{ resturant.name }}</h5>
-            <p class="card-text d-none d-md-block">{{ resturant.address }}</p>
-            <span class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">{{ type.name }}</span>
+            <p class="card-text d-none d-md-block">
+                {{ resturant.address }}
+            </p>
+            <span class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">
+             {{ type.name }}
+            </span>
         </div>
     </router-link>
 </template>

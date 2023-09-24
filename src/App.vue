@@ -22,14 +22,16 @@ export default {
   </div>
 </template>
 <style lang="scss">
-$dark: rgb(20, 20, 20);
+$light: #dbdfe2;
+$dark: #2c2c2c;
 $danger: #ff0000;
 $primary: #ac0a55;
 $warning:  #ff8800;
+@use './styles/_variables.scss';
 @use './styles/generals.scss';
 
 body{
-  background: linear-gradient(20deg , $danger  60%, $warning 60%);
+  background: linear-gradient(200deg , $warning 500px, $danger 500px);
   font-family: 'Montserrat', sans-serif;
   background-repeat: no-repeat;
   min-height: 100vh;
