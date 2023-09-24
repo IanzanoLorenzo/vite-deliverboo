@@ -4,7 +4,7 @@ export default {
 }
 </script>
 <template>
-    <header class="p-1 bg-white ">
+    <header class="p-1 bg-light" >
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <!-- HEADER SINISTRA -->
@@ -48,6 +48,13 @@ export default {
     </header>
 </template>
 <style lang="scss">
+
+header{
+    //box-shadow: 2 2px 4px rgba(2, 2, 2, 1);
+    //position:fixed
+    //background-color: $light !important;
+    box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 5),
+}
 
 .logo_delive{
     width: 100px;
