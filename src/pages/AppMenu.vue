@@ -101,13 +101,13 @@ export default {
 <template>
     <!-- Inizia il contenitore principale -->
     <div class="container pt-5 padd-b">
-        <div class="row padd-b">
-            <div class="col-10 offset-1">
+        <div class="row padd-b d-flex">
+            <div class="col-8 ">
                 <!-- Lista dei piatti disponibili -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del menu -->
                     <li class="list-group-item">
-                        <h1 class="text-center fnt-write fw-bold">IL TUO MENU'</h1>
+                        <h1 class="text-center fnt-write fw-bold">MENU'</h1>
                     </li>
                     <!-- Iterazione sui piatti nel menu -->
                     <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
@@ -118,19 +118,17 @@ export default {
                         <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
                         <div class="d-flex justify-content-between">
                             <span>{{ dish.price }}€</span>
-                            <button class="col-2 text-white btn bg-primary" @click="addToCart(dish)">Aggiungi al carrello</button>
+                            <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
                         </div>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-4">
                 <!-- Lista dei piatti nel carrello -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del carrello -->
                     <li class="list-group-item">
-                        <h2 class="text-center fnt-write fw-bold">IL TUO CARRELLO</h2>
+                        <h2 class="text-center fnt-write fw-bold">CARRELLO</h2>
                     </li>
                     <!-- Iterazione sugli elementi nel carrello -->
                     <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
@@ -141,7 +139,7 @@ export default {
                         <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
                         <div class="d-flex justify-content-between">
                             <span>Quantità: {{ item.quantity }}</span>
-                            <button class="col-2 text-white btn bg-primary" @click="removeFromCart(item, index)">Rimuovi</button>
+                            <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
                         </div>
                     </li>
                     <!-- Riepilogo dell'ordine -->
@@ -149,6 +147,7 @@ export default {
                         <h2 class="text-danger fw-bold text-center">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
+                        <button>Check out</button>
                     </div>
                 </ul>
                 <!-- Fine lista del carrello -->
@@ -163,6 +162,8 @@ export default {
     }
 
     .fnt-write{
-        font-size: 70px;
+        font-size: 50px;
     }
+
+    
 </style>
