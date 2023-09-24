@@ -11,5 +11,7 @@ export default {
     </div>
 </template>
 <style lang="scss">
-    
+@use '../styles/_variables.scss';
+@use '../styles/generals.scss';
+$dark: #0e0a0a;
 </style>
