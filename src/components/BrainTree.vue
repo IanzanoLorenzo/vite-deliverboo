@@ -9,9 +9,11 @@ export default {
             store,
             clientToken: '',
             errorMessage: false,
+            cart: null
         }
     },
     mounted() {
+        this.getCart(this.$route.params.cart);
         this.createCheckoutForm();
     },
     methods: {
@@ -20,24 +22,26 @@ export default {
                 this.clientToken = risp.data.response.clientToken;
                 let button = document.querySelector('#submit-button');
                 braintree.dropin.create({
-                authorization: this.clientToken,
-                selector: '#dropin-container'
+                    authorization: this.clientToken,
+                    selector: '#dropin-container'
                 }, function (err, instance) {
                     if(err){
-                        console.log(err)
+                        //errore
                     }else{
                         button.addEventListener('click', function () {
                             instance.requestPaymentMethod(function (err, payload) {
                                 if(err){
-                                    console.log(err)
+                                    //errore
                                 }else{
-                                    let deviceData = payload.deviceData
                                     axios.post(store.basicUrl+'api/payments/process', {
                                         'nonce' : payload.nonce,
+                                        'cart' : {
+                                            'produtcs' : this.cart
+                                        }
                                     }).then((risp)=>{
                                        console.log(risp.data.response)
                                     }).catch((error) => {
-                                        console.log(error)
+                                        //errore
                                     })
                                 }
                             });
@@ -46,10 +50,15 @@ export default {
                 });
             })
         },
+        getCart(cart){
+            this.cart = localStorage.getItem(cart);
+            console.log(this.cart)
+        },
     },
 }
 </script>
 <template>
+    <h1 v-if="errorMessage">{{errorMessage}}</h1>
     <div id="dropin-container"></div>
     <button id="submit-button" class="button button--small button--green">Purchase</button>
 </template>
