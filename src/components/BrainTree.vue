@@ -1,33 +1,51 @@
 <script>
 import 'https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js';
 import axios from 'axios';
+import {store} from '../store'
 export default {
     data() {
         return {
-            axios
+            axios,
+            store,
+            clientToken: '',
+            errorMessage: false,
         }
-    },
-    created() {
-        //axios.get('').then
     },
     mounted() {
         this.createCheckoutForm();
     },
     methods: {
         createCheckoutForm(){
-            var button = document.querySelector('#submit-button');
-
-            braintree.dropin.create({
-            authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
-            selector: '#dropin-container'
-            }, function (err, instance) {
-            button.addEventListener('click', function () {
-                instance.requestPaymentMethod(function (err, payload) {
-                // Submit payload.nonce to your server
+            this.axios.get(this.store.basicUrl+'api/payments/token').then((risp)=>{
+                this.clientToken = risp.data.response.clientToken;
+                let button = document.querySelector('#submit-button');
+                braintree.dropin.create({
+                authorization: this.clientToken,
+                selector: '#dropin-container'
+                }, function (err, instance) {
+                    if(err){
+                        console.log(err)
+                    }else{
+                        button.addEventListener('click', function () {
+                            instance.requestPaymentMethod(function (err, payload) {
+                                if(err){
+                                    console.log(err)
+                                }else{
+                                    let deviceData = payload.deviceData
+                                    axios.post(store.basicUrl+'api/payments/process', {
+                                        'nonce' : payload.nonce,
+                                    }).then((risp)=>{
+                                       console.log(risp.data.response)
+                                    }).catch((error) => {
+                                        console.log(error)
+                                    })
+                                }
+                            });
+                        })
+                    }
                 });
             })
-            });
-        }
+        },
     },
 }
 </script>
