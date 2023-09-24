@@ -101,13 +101,13 @@ export default {
 <template>
     <!-- Inizia il contenitore principale -->
     <div class="container pt-5 padd-b">
-        <div class="row padd-b">
-            <div class="col-10 offset-1">
+        <div class="row padd-b d-flex">
+            <div class="col-8 ">
                 <!-- Lista dei piatti disponibili -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del menu -->
-                    <li class="list-group-item">
-                        <h1 class="text-center fnt-write fw-bold">IL TUO MENU'</h1>
+                    <li class="list-group-item bg-primary">
+                        <h1 class="text-white fw-bold fnt-write text-center">MENU'</h1>
                     </li>
                     <!-- Iterazione sui piatti nel menu -->
                     <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
@@ -117,38 +117,37 @@ export default {
                         <span><em>{{ dish.ingredients }}</em></span>
                         <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
                         <div class="d-flex justify-content-between">
-                            <span>{{ dish.price }}€</span>
-                            <button class="col-2 text-white btn bg-primary" @click="addToCart(dish)">Aggiungi al carrello</button>
+                            <span class="fw-bold">{{ dish.price }}€</span>
+                            <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
                         </div>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-4">
                 <!-- Lista dei piatti nel carrello -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del carrello -->
-                    <li class="list-group-item">
-                        <h2 class="text-center fnt-write fw-bold">IL TUO CARRELLO</h2>
+                    <li class="list-group-item bg-primary">
+                        <h2 class="text-center fnt-write fw-bold text-white">CARRELLO</h2>
                     </li>
                     <!-- Iterazione sugli elementi nel carrello -->
                     <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
                         <!-- Nome del piatto nel carrello -->
                         <h3 class="text-primary fw-bold">{{ item.name }}</h3>
                         <!-- Prezzo del piatto nel carrello -->
-                        <span>{{ item.price }}€</span>
+                        <span class="fw-bold">{{ item.price }}€</span>
                         <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
                         <div class="d-flex justify-content-between">
-                            <span>Quantità: {{ item.quantity }}</span>
-                            <button class="col-2 text-white btn bg-primary" @click="removeFromCart(item, index)">Rimuovi</button>
+                            <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
+                            <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
                         </div>
                     </li>
                     <!-- Riepilogo dell'ordine -->
                     <div class="card">
-                        <h2 class="text-danger fw-bold text-center">RIEPILOGO ORDINE</h2>
+                        <h2 class="bg-primary text-white text-center p-3 fw-bold">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
+                        <button class="btn btn-primary">Procedi al Pagamento</button>
                     </div>
                 </ul>
                 <!-- Fine lista del carrello -->
@@ -163,6 +162,8 @@ export default {
     }
 
     .fnt-write{
-        font-size: 70px;
+        font-size: 50px;
     }
+
+    
 </style>
