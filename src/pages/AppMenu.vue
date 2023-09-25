@@ -115,7 +115,7 @@ export default {
     <!-- Inizia il contenitore principale -->
     <div v-else class="container pt-5 padd-b">
         <div class="row padd-b d-flex">
-            <div class="col-8 ">
+            <div class="col-12 col-lg-8 ">
                 <!-- Lista dei piatti disponibili -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del menu -->
@@ -136,7 +136,7 @@ export default {
                     </li>
                 </ul>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-4">
                 <!-- Lista dei piatti nel carrello -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del carrello -->
