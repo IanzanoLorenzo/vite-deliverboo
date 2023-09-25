@@ -16,7 +16,7 @@ export default {
             dishes: '', // Conserva i piatti recuperati dalla chiamata API
             cart: [], // Array per memorizzare gli elementi nel carrello
             priceTotal: 0, // Prezzo totale degli elementi nel carrello
-            resturant: null,
+            resturant: '',
         }
     },
     mounted() {
@@ -115,12 +115,28 @@ export default {
     <!-- Inizia il contenitore principale -->
     <div v-else class="container pt-5 padd-b">
         <div class="row padd-b d-flex">
-            <div class="col-12 col-lg-8 ">
+            <div class="card col-12 col-lg-8 offset-lg-2 p-0 mb-5">
+                <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
+                <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
+                <div class="card-body">
+                    <h2 class="card-title fw-bold">{{ resturant.name }}</h2>
+                    <div class="card-text pb-2">
+                        <em>
+                            {{ resturant.address }}
+                        </em>
+                    </div>
+                    <div class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">
+                    {{ type.name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-8 card p-0 mb-5">
                 <!-- Lista dei piatti disponibili -->
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del menu -->
                     <li class="list-group-item bg-primary">
-                        <h1 class="text-white fw-bold fnt-write text-center">MENU'</h1>
+                        <h2 class="text-white fw-bold text-center">MENU'</h2>
                     </li>
                     <!-- Iterazione sui piatti nel menu -->
                     <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
@@ -141,7 +157,7 @@ export default {
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del carrello -->
                     <li class="list-group-item bg-primary">
-                        <h2 class="text-center fnt-write fw-bold text-white">CARRELLO</h2>
+                        <h2 class="text-center fw-bold text-white">CARRELLO</h2>
                     </li>
                     <!-- Iterazione sugli elementi nel carrello -->
                     <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
@@ -156,10 +172,10 @@ export default {
                         </div>
                     </li>
                     <!-- Riepilogo dell'ordine -->
-                    <div class="card">
-                        <h2 class="bg-primary text-white text-center p-3 fw-bold">RIEPILOGO ORDINE</h2>
+                    <div class="text-center bg-white">
+                        <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
-                        <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
+                        <h3 class="fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
                         <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
                     </div>
                 </ul>
@@ -174,9 +190,25 @@ export default {
         padding-bottom: 100px;
     }
 
-    .fnt-write{
-        font-size: 50px;
-    }
+    // .fnt-write{
+    //     font-size: 30px;
+    // }
 
+    .card {
+        overflow: hidden;
+        border-radius: 15px !important;
+        .img-fluid{
+            height: 200px;
+            object-fit: cover;
+        }
+        p.card-text{
+        height: 100px;
+        overflow: hidden;
+        }
+        h5.card-title{
+            height: 40px;
+            overflow: hidden;
+        }
+    }
     
 </style>
