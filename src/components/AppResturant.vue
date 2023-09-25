@@ -74,9 +74,11 @@ export default {
                 </div>
                 <button class="btn btn-primary" @click="getResturants()">Filtra</button>
             </div>
-            <div class="row">
+            <div class=" col-12 row">
+                <!-- Controllo se ci sono ristoranti -->
+                <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente</div>
                 <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                <div class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id">
+                <div v-else class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id">
                     <ResturantCard :resturant="resturant"/>
                 </div>
             </div>
