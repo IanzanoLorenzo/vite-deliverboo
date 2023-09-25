@@ -20,7 +20,7 @@ export default {
                 'surname' : this.customerSurname,
                 'email' : this.customerEmail,
                 'address' : this.adderss,
-                'deliveryTime' : this.deliveryTime
+                'delivery_time' : this.deliveryTime
             }
         }
     },
@@ -53,7 +53,7 @@ export default {
                 </div>
             </div>
             <div class="col-6">
-                <BrainTree :form="dataForm()"/>   
+                <BrainTree :formDataProp="dataForm()"/>   
             </div>
         </div>
     </div>

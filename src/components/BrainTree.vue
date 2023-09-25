@@ -4,7 +4,7 @@ import axios from 'axios';
 import {store} from '../store'
 export default {
     props:{
-        form: Object
+        formDataProp: Object
     },
     data() {
         return {
@@ -20,9 +20,10 @@ export default {
     },
     methods: {
         createCheckoutForm(){
-            let new_cart = this.cart;
-            let rest_id = this.$route.params.cart;
-            if (this.form['name'] && this.form['surname'] && this.form['email'] && this.form['address'] && this.form['deliverytime'] && this.form) {
+            if (this.formDataProp['name'] && this.formDataProp['surname'] && this.formDataProp['email'] && this.formDataProp['address'] && this.formDataProp['delivery_time'] && this.formDataProp) {
+                let new_cart = this.cart;
+                let rest_id = this.$route.params.cart;
+                let formData = this.formDataProp;
                 this.axios.get(this.store.basicUrl+'api/payments/token').then((risp)=>{
                     this.clientToken = risp.data.response.clientToken;
                     let button = document.querySelector('#submit-button');
@@ -31,23 +32,23 @@ export default {
                         selector: '#dropin-container'
                     }, function (err, instance) {
                         if(err){
-                            //errore
+                            console.log(err)
                         }else{
                             button.addEventListener('click', function () {
                                 instance.requestPaymentMethod(function (err, payload) {
                                     if(err){
-                                        //errore
+                                        console.log(err)
                                     }else{
                                         axios.post(store.basicUrl+'api/payments/process', {
                                             'nonce' : payload.nonce,
-                                            'cart' :new_cart,
+                                            'cart' : new_cart,
                                             'order': {
                                                 'resturant_id' : rest_id,
-                                                'address': 'Via Gaudi, 5',
-                                                'costumer_email' : 'costumer'+rest_id+'@mail.com',
-                                                'costumer_name': 'Piero',
-                                                'costumer_surname': 'Pierozzi',
-                                                'delivery_time' : '22:50:00',
+                                                'address':  'piero 22',
+                                                'costumer_email' :  'piero@mail.com',
+                                                'costumer_name':  'piero',
+                                                'costumer_surname':  'piero',
+                                                'delivery_time' :  '22:22',
                                                 'total_price': '20.00'
                                             }
                                         }).then((risp)=>{
@@ -71,7 +72,6 @@ export default {
             if (storedCart) {
                 this.cart = JSON.parse(storedCart);
             }
-            console.log(this.cart)
         },
     },
 }
@@ -80,7 +80,7 @@ export default {
     <div class="alert alert-warning" v-if="errorMessage">{{errorMessage}}</div>
     <a href="#" @click="createCheckoutForm">Inserisci il metodo di pagamento</a>
     <div id="dropin-container"></div>
-    <button id="submit-button" class="btn btn-primary">Purchase</button>
+    <button id="submit-button" class="button btn btn-primary">Purchase</button>
 </template>
 <style lang="scss" scoped>
 </style>
