@@ -22,7 +22,7 @@ export default{
 </div>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 $color-pancake: #C4B26F;
 $color-pancake: #D8CB9F;
 $color-pancake-dark: darken($color-pancake,50%);
@@ -32,10 +32,6 @@ $color-plate: #D3EBEA;
 
 $animation-duration: 6000ms;
 
-body{
-  background:$color-bg;
-  overflow:hidden;
-}
 
 .loader{
   position:absolute;
