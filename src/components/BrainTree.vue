@@ -44,18 +44,18 @@ export default {
                                             'cart' : new_cart,
                                             'order': {
                                                 'resturant_id' : rest_id,
-                                                'address':  'piero 22',
-                                                'costumer_email' :  'piero@mail.com',
-                                                'costumer_name':  'piero',
-                                                'costumer_surname':  'piero',
-                                                'delivery_time' :  '22:22',
+                                                'address':  formData['address'],
+                                                'costumer_email' :  formData['email'],
+                                                'costumer_name':  formData['name'],
+                                                'costumer_surname':  formData['surname'],
+                                                'delivery_time' :  formData['delivery_time'],
                                                 'total_price': '20.00'
                                             }
                                         }).then((risp)=>{
                                             console.log(risp.data.response);
                                             localStorage.removeItem(rest_id);
                                         }).catch((error) => {
-                                            //errore
+                                            console.log(error)
                                         })
                                     }
                                 });
