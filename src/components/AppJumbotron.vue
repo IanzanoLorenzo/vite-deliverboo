@@ -13,45 +13,48 @@ export default {
 }
 </script>
 <template>
-    
+    <!-- IMMAGINE CARBONARA SFONDO -->
     <div class="carbojumbotron container-fluid">
         <div class="container h-100">
             <div class="row h-100 ">
-                <div class="col-12 d-flex align-items-center">
-                    <div class="text-center transbox">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <!-- BOX BLUR -->
+                    <div class="text-center trans_box">
                         <!-- SLOGAN -->
-                        <h1> Portiamo il sapore del mondo direttamente alla tua porta!</h1>
-                        <!-- PARAGRAFO -->
-                        <h4>
-                            Che tu stia cercando i sapori autentici della cucina italiana, l'esotismo delle spezie orientali 
-                            o la comodità di un hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
-                        </h4>
+                        <h2>
+                            Portiamo il sapore del mondo <br> direttamente a casa tua!
+                        </h2>
+                        
                     </div>
-                    
+                    <!-- FINE BOX BLUR -->
                 </div>
-                
-                    
             </div>
         </div>
-        
     </div>
     
 </template>
 <style lang="scss">
-
+@import '../styles/_variables.scss';
+@import '../styles/generals.scss';
 .carbojumbotron{
     background-image: url(../assets/img/carbojumbotron.jpg);
     height: 600px;
     background-position: center;
-    backdrop-filter: blur(2px);
+    background-size: cover ;
+    background-repeat: no-repeat;
     
-    .transbox{
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(2.5px);
+    .trans_box{
+        background-color: rgba(255, 255, 255, 0.589);
+        backdrop-filter: blur(3px);
         padding: 30px;
         margin: 30px;
-        border-radius: 20px,
+        border-radius: 10px;
+        //box-shadow: 0px 6mm 5px 5px rgb(99, 99, 99);
+
+        position:relative;
+        top: 260px
     }
+
 }
     
 </style>

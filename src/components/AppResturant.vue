@@ -9,7 +9,7 @@ export default {
     },
     data() {
         return {
-            store, 
+            store,
             axios,
             selected_type: [],
         }
@@ -43,9 +43,31 @@ export default {
 }
 </script>
 <template>
-    <div class="container pad-bot">
+    <div class="container pad_bot">
+        <!-- PARAGRAFO -->
+        <p class="text-white fs-5 lh-lg mb-3 pad_top_extra"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
+            Che tu stia cercando i sapori autentici della cucina italiana, l'esotismo delle spezie orientali
+            o un gustoso hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
+        </p>
+        <!-- CITAZIONE -->
+        
+        <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
+            <blockquote class="blockquote">
+                <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                <cite title="Source Title">Alice Waters</cite>
+            </figcaption>
+        </figure>
+
+        <p class="text-white display-6 mb-3 pt-5">
+            E tu, quale tradizione vorresti scoprire questa volta?
+        </p>
+
         <div class="row mt-5">
+            <!-- RICERCA PER TIPOLOGIA  -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
+                <!-- CHECKBOX -->
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
@@ -62,7 +84,22 @@ export default {
     </div>
 </template>
 <style lang="scss">
-  .pad-bot{
-    padding-bottom: 100px;
-  }  
+    @import '../styles/_variables.scss';
+    @import '../styles/generals.scss';
+
+    .pad_bot{
+        padding-bottom: 100px;
+    }
+
+    .pad_top_extra{
+        padding-top: 80px;
+    }
+
+    //CITAZIONE
+    figure{
+        .blockquote, .blockquote-footer{
+            color: $dark;
+             
+        }
+    }  
 </style>
