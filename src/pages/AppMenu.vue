@@ -164,7 +164,7 @@ export default {
                         <!-- Nome del piatto nel carrello -->
                         <h3 class="text-primary fw-bold">{{ item.name }}</h3>
                         <!-- Prezzo del piatto nel carrello -->
-                        <span class="fw-bold">{{ item.price }}€</span>
+                        <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
                         <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
                         <div class="d-flex justify-content-between">
                             <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
@@ -175,7 +175,7 @@ export default {
                     <div class="text-center bg-white">
                         <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
-                        <h3 class="fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
+                        <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
                         <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
                     </div>
                 </ul>
