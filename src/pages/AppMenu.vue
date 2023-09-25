@@ -10,7 +10,7 @@ export default {
             dishes: '', // Conserva i piatti recuperati dalla chiamata API
             cart: [], // Array per memorizzare gli elementi nel carrello
             priceTotal: 0, // Prezzo totale degli elementi nel carrello
-            resturant_id: 0
+            resturant: null,
         }
     },
     mounted() {
@@ -28,9 +28,9 @@ export default {
                 // Memorizza i piatti recuperati nella variabile 'dishes'
                 this.dishes = response.data.response.dishes;
                 //memorizzo l'id del ristorante
-                this.resturant_id = response.data.response.resturant;
+                this.resturant = response.data.response.resturant;
                 // Recupera i dati del carrello dalla memoria locale, se presenti
-                const storedCart = localStorage.getItem(this.resturant_id);
+                const storedCart = localStorage.getItem(this.resturant.id);
             
                 if (storedCart) {
                     this.cart = JSON.parse(storedCart);
@@ -55,7 +55,7 @@ export default {
             }
 
             // Salva il carrello aggiornato nella memoria locale per la persistenza
-            localStorage.setItem(this.resturant_id, JSON.stringify(this.cart));
+            localStorage.setItem(this.resturant.id, JSON.stringify(this.cart));
 
             // Ricalcola il prezzo totale
             this.totalPrice();
@@ -74,9 +74,9 @@ export default {
 
             if(this.cart.length > 0){
                 // Salva il carrello aggiornato nella memoria locale
-                localStorage.setItem(this.resturant_id, JSON.stringify(this.cart));
+                localStorage.setItem(this.resturant.id, JSON.stringify(this.cart));
             } else {
-                localStorage.removeItem(this.resturant_id);
+                localStorage.removeItem(this.resturant.id);
             }
 
             // Ricalcola il prezzo totale
@@ -147,7 +147,7 @@ export default {
                         <h2 class="bg-primary text-white text-center p-3 fw-bold">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
-                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant_id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
+                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
                     </div>
                 </ul>
                 <!-- Fine lista del carrello -->
