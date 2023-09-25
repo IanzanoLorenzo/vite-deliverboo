@@ -53,10 +53,14 @@ export default {
         
         <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
             <blockquote class="blockquote">
-                <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
+                <p>
+                    "Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."
+                </p>
             </blockquote>
             <figcaption class="blockquote-footer">
-                <cite title="Source Title">Alice Waters</cite>
+                <cite title="Source Title">
+                    Alice Waters
+                </cite>
             </figcaption>
         </figure>
 
@@ -69,23 +73,35 @@ export default {
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
                 <!-- CHECKBOX -->
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
+
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
-                    <label class="form-check-label" :for="type.name+'_type'">{{ type.name }}</label>
+                    <!-- TIPOLOGIA -->
+                    <label class="form-check-label" :for="type.name+'_type'">
+                        {{ type.name }}
+                    </label>
                 </div>
-                <button class="btn btn-primary" @click="getResturants()">Filtra</button>
+
+                <!-- PULSANTE FILTRA -->
+                <button class="btn btn-primary" @click="getResturants()">
+                    Filtra
+                </button>
             </div>
-            <div class=" col-12 row">
-                <!-- Controllo se ci sono ristoranti -->
-                <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente</div>
-                <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                <div v-else class="col-6 g-5" v-for="resturant in store.resturants" :key="resturant.id">
-                    <ResturantCard :resturant="resturant"/>
+            <div class="trans_box">
+                <div class="row">
+                    <!-- Controllo se ci sono ristoranti -->
+                    <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente</div>
+                    <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
+                    <div v-else class="col-12 col-md-6 g-5" v-for="resturant in store.resturants" :key="resturant.id"> 
+                        <!--***** RESTURANT CARD ***** -->
+                        <ResturantCard :resturant="resturant"/>
+                        <!--**** FINE RESTURANT CARD **** -->                      
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
 
@@ -104,4 +120,12 @@ export default {
              
         }
     }  
+
+    //RESTURANT CARD
+    .trans_box{
+        background-color: rgba(255, 255, 255, 0.589);
+        backdrop-filter: blur(3px);
+        padding: 60px;
+        border-radius: 10px;
+    }
 </style>
