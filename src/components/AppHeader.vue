@@ -13,6 +13,8 @@ export default {
                     <li class="d-flex align-items-center">
                         <router-link :to="'/'" class="nav-link px-2 ">
                             <img src="../assets/img/logo-deliveboo.png" class="logo_delive" alt="logo-deliveboo">
+                            
+                            <!-- ****** INSERIRE SCRITTA DELIVEBOO VICINO AL LOGO ******-->
                         </router-link>
                     </li>
                     <li class="d-flex align-items-center">
@@ -21,13 +23,13 @@ export default {
                         </router-link>
                     </li>
                     <li class="d-flex align-items-center">
-                        <a href="#" class="nav-link px-2">FAQs
-
+                        <a href="#" class="nav-link px-2">
+                            FAQs
                         </a>
                     </li>
                     <li class="d-flex align-items-center">
-                        <a href="#" class="nav-link px-2">About
-
+                        <a href="#" class="nav-link px-2">
+                            About
                         </a>
                     </li>
                 </ul>
@@ -58,6 +60,10 @@ header{
 
 .logo_delive{
     width: 100px;
+}
+
+.shadow_title {
+    text-shadow: 3px 3px white;
 }
     
 </style>
