@@ -12,7 +12,8 @@ export default {
             store,
             clientToken: '',
             errorMessage: false,
-            cart: null
+            cart: null,
+            fatalError: false
         }
     },
     mounted() {
@@ -71,16 +72,25 @@ export default {
             let storedCart = localStorage.getItem(cart);
             if (storedCart) {
                 this.cart = JSON.parse(storedCart);
+            }else{
+                this.fatalError = true
             }
         },
     },
 }
 </script>
 <template>
-    <div class="alert alert-warning" v-if="errorMessage">{{errorMessage}}</div>
-    <a href="#" @click="createCheckoutForm">Inserisci il metodo di pagamento</a>
-    <div id="dropin-container"></div>
-    <button id="submit-button" class="button btn btn-primary">Purchase</button>
+    <div v-if="fatalError">
+        <div class="alert alert-warning">
+            C'&egrave; stato un errore nel caricamento del carrello. Torna indietro per riprovare. 
+        </div>
+    </div>
+    <div v-else>
+        <div class="alert alert-warning" v-if="errorMessage">{{errorMessage}}</div>
+        <a href="#" @click="createCheckoutForm">Inserisci il metodo di pagamento</a>
+        <div id="dropin-container"></div>
+        <button id="submit-button" class="button btn btn-primary">Purchase</button>
+    </div>
 </template>
 <style lang="scss" scoped>
 </style>

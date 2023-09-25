@@ -30,7 +30,7 @@ export default {
     <div class="container card mt-5">
         <h2 class="text-center mt-3">Checkout</h2>
         <div class="row">
-            <div class="col-6 pt-4">
+            <div class="col-12 col-md-6 pt-4">
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
                     <input type="text" class="form-control" v-model="customerName">
@@ -52,7 +52,7 @@ export default {
                     <input type="time" class="form-control" v-model="deliveryTime">
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <BrainTree :formDataProp="dataForm()"/>   
             </div>
         </div>
