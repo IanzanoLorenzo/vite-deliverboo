@@ -17,15 +17,15 @@ export default {
 
 
 
-        <div class="position-relative"> 
+        <div class="position-relative w-100"> 
 
             <!-- IMMAGINE RISTORANTE -->
-            <img class="absolute_img" v-if="resturant.cover_image === null" src="../assets/img/default-vite.png">
+            <img class="img-fluid w-100" v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" >
     
             <!-- IMMAGINE DI DEFAULT RISTO. -->
-            <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
+            <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" >
             
-            <svg  class="absolute_svg" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
+            <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
                 <polygon class="" points="235 0 235 25 0 25"></polygon>
             </svg>
 
@@ -65,23 +65,18 @@ export default {
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
 
-    .absolute_poly{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-
-    .absolute_img{
-        position:relative;
-        left:0px;
-        right:0px;
-        width: 100%;
-        height: 100%;
-    }
+ 
 
     .absolute_svg{
-       position: relative;
+        position: absolute;
+        bottom: 0%;
+        left:19%;
+
+        
+
+    }
+    .absolute_poly{
+        position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
