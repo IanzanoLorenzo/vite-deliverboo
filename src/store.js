@@ -3,5 +3,6 @@ import { reactive } from "vue";
 export const store = reactive({
     basicUrl: 'http://127.0.0.1:8000/',
     resturants: [],
-    types: null
+    types: null,
+    loading: true
 })

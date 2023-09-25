@@ -1,8 +1,14 @@
 <script>
+import AppLoader from '../components/AppLoader.vue';
 import axios from 'axios';
 import { store } from '../store';
 
+
 export default {
+    components:{
+        AppLoader,
+    },
+
     data() {
         return {
             store, // Oggetto di configurazione (assumendo che sia un oggetto di configurazione globale)
@@ -23,6 +29,9 @@ export default {
     },
     methods: {
         getDishes(slug){
+
+            this.store.loading = true;
+
             // Effettua una richiesta GET all'API per ottenere i piatti in base allo slug
             axios.get(this.store.basicUrl + 'api/resturants/' + slug).then((response) =>{
                 // Memorizza i piatti recuperati nella variabile 'dishes'
@@ -35,6 +44,8 @@ export default {
                 if (storedCart) {
                     this.cart = JSON.parse(storedCart);
                 }
+                
+                this.store.loading = false;
             });
         },
         addToCart(dish) {
@@ -99,8 +110,10 @@ export default {
 }
 </script>
 <template>
+    <AppLoader  v-if="store.loading"/>
+
     <!-- Inizia il contenitore principale -->
-    <div class="container pt-5 padd-b">
+    <div v-else class="container pt-5 padd-b">
         <div class="row padd-b d-flex">
             <div class="col-8 ">
                 <!-- Lista dei piatti disponibili -->
