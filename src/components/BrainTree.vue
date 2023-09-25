@@ -18,6 +18,8 @@ export default {
     },
     methods: {
         createCheckoutForm(){
+            let new_cart = this.cart;
+            let rest_id = this.$route.params.cart;
             this.axios.get(this.store.basicUrl+'api/payments/token').then((risp)=>{
                 this.clientToken = risp.data.response.clientToken;
                 let button = document.querySelector('#submit-button');
@@ -35,11 +37,19 @@ export default {
                                 }else{
                                     axios.post(store.basicUrl+'api/payments/process', {
                                         'nonce' : payload.nonce,
-                                        'cart' : {
-                                            'produtcs' : this.cart
+                                        'cart' :new_cart,
+                                        'order': {
+                                            'resturant_id' : rest_id,
+                                            'address': 'Via Gaudi, 5',
+                                            'costumer_email' : 'costumer'+rest_id+'@mail.com',
+                                            'costumer_name': 'Piero',
+                                            'costumer_surname': 'Pierozzi',
+                                            'delivery_time' : '22:50:00',
+                                            'total_price': '20.00'
                                         }
                                     }).then((risp)=>{
-                                       console.log(risp.data.response)
+                                        console.log(risp.data.response);
+                                        localStorage.removeItem(rest_id);
                                     }).catch((error) => {
                                         //errore
                                     })
@@ -51,7 +61,10 @@ export default {
             })
         },
         getCart(cart){
-            this.cart = localStorage.getItem(cart);
+            let storedCart = localStorage.getItem(cart);
+            if (storedCart) {
+                this.cart = JSON.parse(storedCart);
+            }
             console.log(this.cart)
         },
     },

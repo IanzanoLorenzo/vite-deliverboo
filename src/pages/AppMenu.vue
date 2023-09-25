@@ -76,7 +76,7 @@ export default {
                 // Salva il carrello aggiornato nella memoria locale
                 localStorage.setItem(this.resturant_id, JSON.stringify(this.cart));
             } else {
-                localStorage.removeItem(this.resturant_id)
+                localStorage.removeItem(this.resturant_id);
             }
 
             // Ricalcola il prezzo totale
@@ -147,7 +147,7 @@ export default {
                         <h2 class="bg-primary text-white text-center p-3 fw-bold">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="text-warning fw-bold">Prezzo Totale: {{ priceTotal }}€</h3>
-                        <button class="btn btn-primary">Procedi al Pagamento</button>
+                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant_id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
                     </div>
                 </ul>
                 <!-- Fine lista del carrello -->
