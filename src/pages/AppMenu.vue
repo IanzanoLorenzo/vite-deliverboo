@@ -157,7 +157,7 @@ export default {
                 <ul class="list-group list-group-flush">
                     <!-- Titolo del carrello -->
                     <li class="list-group-item bg-primary">
-                        <h2 class="text-center fw-bold text-white">CARRELLO</h2>
+                        <h2 class="text-center fw-bold text-white text-uppercase">CARRELLO DI {{ resturant.name }} </h2>
                     </li>
                     <!-- Iterazione sugli elementi nel carrello -->
                     <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
