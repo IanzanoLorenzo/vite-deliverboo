@@ -26,32 +26,26 @@ export default {
             <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" >
             
             <!-- POLIGONO MALEDETTO - FORSE SI CAMBIA CON UN PNG IN ILLUSTRATOR -->
-            <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
+            <!-- <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
                 <polygon class="" points="235 0 235 25 0 25"></polygon>
-            </svg>
+            </svg> -->
 
 
         </div>
         
             
            
-    
+        
         <div class="card-body m-4">
             <!-- ICONA TIPOLOGIA CUCINA -->
-            <span class="in-line" v-for="type in resturant.types" :key="type.id">
-                <span class="d-flex justify-content-end ">
-
-                    <i :class="['fas', type.icon] "></i>
-
-                </span>
+            <span v-for="type in resturant.types" :key="type.id">
                 
-               
-
+                <i :class="['fas', type.icon]" class="me-5 fs-3"></i>
 
             </span>
 
             <!-- NOME RISTO. -->
-            <h5 class="text-primary">
+            <h5 class="text-primary mt-4">
                 {{ resturant.name }}
             </h5>
 
@@ -61,16 +55,19 @@ export default {
                 {{ resturant.address }}
             </p>
 
-           
+        
 
 
             <!-- TIPOLOGIA RISTO. -->
-            <span class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">
-             {{ type.name }}
+            <span class="badge bg-primary me-1" v-for="type in resturant.types" :key="type.id">
+            {{ type.name }}
             </span>
 
 
         </div>
+
+        
+        
 
     </router-link>
 </template>
@@ -99,13 +96,12 @@ export default {
     .card {
         overflow: hidden;
         border: none;
+        
         .img-fluid{
             height: 200px;
             object-fit: cover;
         }
+        
     }
-
-
-
 
 </style>
