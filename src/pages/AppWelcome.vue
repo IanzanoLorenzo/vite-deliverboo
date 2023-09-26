@@ -25,7 +25,6 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-//COLOR PALETTE
 @import '../styles/_variables.scss';
 @import '../styles/generals.scss';
 
