@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-    <router-link :to="{name: 'menu',params: {slug: resturant.slug} }" class="card" style="width: 100%;" >
+    <router-link :to="{name: 'menu',params: {slug: resturant.slug} }" class="card rounded-0 h-100 text-decoration-none" style="width: 100%;" >
 
 
 
@@ -25,6 +25,7 @@ export default {
             <!-- IMMAGINE DI DEFAULT RISTO. -->
             <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" >
             
+            <!-- POLIGONO MALEDETTO - FORSE SI CAMBIA CON UN PNG IN ILLUSTRATOR -->
             <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
                 <polygon class="" points="235 0 235 25 0 25"></polygon>
             </svg>
@@ -35,26 +36,41 @@ export default {
             
            
     
-        <div class="card-body">
+        <div class="card-body m-4">
+            <!-- ICONA TIPOLOGIA CUCINA -->
+            <span class="in-line" v-for="type in resturant.types" :key="type.id">
+                <span class="d-flex justify-content-end ">
 
-            
+                    <i :class="['fas', type.icon] "></i>
+
+                </span>
+                
+               
+
+
+            </span>
+
             <!-- NOME RISTO. -->
-            <h5 class="card-title">{{ resturant.name }}</h5>
+            <h5 class="text-primary">
+                {{ resturant.name }}
+            </h5>
+
 
             <!-- VIA RISTO. -->
-            <p class="card-text d-none d-md-block">
+            <p class="card-text">
                 {{ resturant.address }}
             </p>
+
+           
+
 
             <!-- TIPOLOGIA RISTO. -->
             <span class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">
              {{ type.name }}
             </span>
 
+
         </div>
-
-
-
 
     </router-link>
 </template>
@@ -65,14 +81,11 @@ export default {
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
 
- 
-
     .absolute_svg{
         position: absolute;
         bottom: 0%;
         left:19%;
-
-        
+        fill: rgb(255, 255, 255);
 
     }
     .absolute_poly{
@@ -80,6 +93,7 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
+        fill: rgb(255, 255, 255);
     }
 
     .card {
@@ -87,16 +101,6 @@ export default {
         .img-fluid{
             height: 200px;
             object-fit: cover;
-        }
-
-        p.card-text{
-            height: 100px;
-            overflow: hidden;
-        }
-
-        h5.card-title{
-            height: 40px;
-            overflow: hidden;
         }
     }
 

@@ -119,7 +119,7 @@ export default {
                 <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
                 <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
                 <div class="card-body">
-                    <h2 class="card-title fw-bold">{{ resturant.name }}</h2>
+                    <h2 class="card-title ">{{ resturant.name }}</h2>
                     <div class="card-text pb-2">
                         <em>
                             {{ resturant.address }}

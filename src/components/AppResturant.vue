@@ -68,7 +68,7 @@ export default {
             E tu, quale tradizione vorresti scoprire questa volta?
         </p>
 
-        <div class="row mt-5">
+        <div class="row mt-2">
             <!-- RICERCA PER TIPOLOGIA  -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
                 <!-- CHECKBOX -->
@@ -91,7 +91,7 @@ export default {
                     <!-- Controllo se ci sono ristoranti -->
                     <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente</div>
                     <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                    <div v-else class="col-12 col-md-6 g-5" v-for="resturant in store.resturants" :key="resturant.id"> 
+                    <div v-else class="col-12 col-md-6 mb-5 " v-for="resturant in store.resturants" :key="resturant.id"> 
                         <!--***** RESTURANT CARD ***** -->
                         <ResturantCard :resturant="resturant"/>
                         <!--**** FINE RESTURANT CARD **** -->                      
@@ -125,7 +125,8 @@ export default {
     .trans_box{
         background-color: rgba(255, 255, 255, 0.589);
         backdrop-filter: blur(3px);
-        padding: 60px;
         border-radius: 10px;
+        padding: 25px 20px 25px 20px;
+        margin-top: 30px;
     }
 </style>
