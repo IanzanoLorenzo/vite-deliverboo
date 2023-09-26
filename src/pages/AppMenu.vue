@@ -41,7 +41,7 @@ export default {
         },
         getCart(){
             // Recupera i dati del carrello dalla memoria locale, se presenti
-            const storedCart = localStorage.getItem(this.resturant.id);
+            const storedCart = localStorage.getItem(this.resturant.slug);
             
             if (storedCart) {
                 this.cart = JSON.parse(storedCart);
@@ -90,7 +90,7 @@ export default {
         updateCart(){
             if(this.cart.length > 0){
                 // Salva il carrello aggiornato nella memoria locale
-                localStorage.setItem(this.resturant.id, JSON.stringify(this.cart));
+                localStorage.setItem(this.resturant.slug, JSON.stringify(this.cart));
             } else {
                 this.deleteCart();
             }
@@ -110,7 +110,7 @@ export default {
             this.priceTotal = Math.round(this.priceTotal * 100) / 100;
         },
         deleteCart(){
-            localStorage.removeItem(this.resturant.id);
+            localStorage.removeItem(this.resturant.slug);
             this.getCart();
         }
     },
@@ -187,7 +187,7 @@ export default {
                         <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
-                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
+                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
                         <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
                     </div>
                 </ul>
