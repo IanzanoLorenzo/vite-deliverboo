@@ -79,6 +79,7 @@ export default {
                 });
             }else{
                 this.fatalError = true
+                this.errorMessage = 'Ops sembra che il carrello selezionato non abbia nulla al suo interno, prova ad inserire dei prodotti o a cambiare carrello'
             }
         },
     },
@@ -87,7 +88,7 @@ export default {
 <template>
     <div v-if="fatalError">
         <div class="alert alert-warning">
-            C'&egrave; stato un errore nel caricamento del carrello. Torna indietro per riprovare. 
+            {{ errorMessage }}
         </div>
     </div>
     <div v-else>
