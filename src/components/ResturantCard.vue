@@ -98,7 +98,7 @@ export default {
 
     .card {
         overflow: hidden;
-        border: none
+        border: none;
         .img-fluid{
             height: 200px;
             object-fit: cover;
