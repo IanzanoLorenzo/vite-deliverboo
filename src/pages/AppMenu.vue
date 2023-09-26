@@ -114,7 +114,7 @@ export default {
 
     <!-- Inizia il contenitore principale -->
     <div v-else class="container pt-5 padd-b">
-        <div class="row padd-b d-flex">
+        <div class="row padd-b">
             <div class="card col-12 col-lg-8 offset-lg-2 p-0 mb-5">
                 <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
                 <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
@@ -208,6 +208,9 @@ export default {
         h5.card-title{
             height: 40px;
             overflow: hidden;
+        }
+        img{
+            width: 100%;
         }
     }
     
