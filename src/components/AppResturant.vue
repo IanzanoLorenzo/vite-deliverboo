@@ -77,14 +77,8 @@ export default {
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <!-- TIPOLOGIA -->
                     <label class="form-check-label" :for="type.name+'_type'">
-                        {{ type.name }}
+                        <i :class="['fas', type.icon]"></i>  {{ type.name }}
                     </label>
-                    
-                    <!-- ICONE -->
-                    <span v-for="type in resturant.types" :key="type.id">
-                        <i :class="['fas', type.icon]" class="me-5 fs-3"></i>
-                    </span>
-
                 </div>
 
                 <!-- PULSANTE FILTRA -->
