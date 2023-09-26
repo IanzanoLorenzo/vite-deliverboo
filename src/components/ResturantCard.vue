@@ -26,9 +26,9 @@ export default {
             <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" >
             
             <!-- POLIGONO MALEDETTO - FORSE SI CAMBIA CON UN PNG IN ILLUSTRATOR -->
-            <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
+            <!-- <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
                 <polygon class="" points="235 0 235 25 0 25"></polygon>
-            </svg>
+            </svg> -->
 
 
         </div>

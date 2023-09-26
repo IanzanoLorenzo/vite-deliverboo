@@ -79,6 +79,12 @@ export default {
                     <label class="form-check-label" :for="type.name+'_type'">
                         {{ type.name }}
                     </label>
+                    
+                    <!-- ICONE -->
+                    <span v-for="type in resturant.types" :key="type.id">
+                        <i :class="['fas', type.icon]" class="me-5 fs-3"></i>
+                    </span>
+
                 </div>
 
                 <!-- PULSANTE FILTRA -->
