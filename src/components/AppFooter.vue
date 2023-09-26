@@ -17,6 +17,8 @@ export default {
                                 <li><a href="#" title=""><i class="fa-brands fa-facebook"></i></a></li>
                                 <li><a href="#" title=""><i class="fa-brands fa-twitter"></i></a></li>
                                 <li><a href="#" title=""><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#" title=""><i class="fa-brands fa-whatsapp"></i></a></li>
+                                <li><a href="#" title=""><i class="fa-brands fa-telegram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,11 +28,11 @@ export default {
                     <div class="footer-info-single">
                         <h2 class="title fw-bold">Scopri Deliveroo</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Chi siamo</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Ristoranti</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Altro</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Lavora con noi</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Diventa nostro partner</a></li>
+                            <li><a href="#" title="">Chi siamo</a></li>
+                            <li><a href="#" title="">Ristoranti</a></li>
+                            <li><a href="#" title="">Altro</a></li>
+                            <li><a href="#" title="">Lavora con noi</a></li>
+                            <li><a href="#" title="">Diventa nostro partner</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,9 +41,9 @@ export default {
                     <div class="footer-info-single">
                         <h2 class="title fw-bold">Note legali</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Termini & Condizioni</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Informativa sulla privacy</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Cookies</a></li>
+                            <li><a href="#" title="">Termini & Condizioni</a></li>
+                            <li><a href="#" title="">Informativa sulla privacy</a></li>
+                            <li><a href="#" title="">Cookies</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,9 +52,9 @@ export default {
                     <div class="footer-info-single">
                         <h2 class="title fw-bold">Aiuto</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Contatti</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> FAQ</a></li>
-                            <li><a href="#" title=""><i class="fa-solid fa-pizza-slice"></i> Tipi di cucina</a></li>
+                            <li><a href="#" title="">Contatti</a></li>
+                            <li><a href="#" title="">FAQ</a></li>
+                            <li><a href="#" title="">Tipi di cucina</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,15 +68,21 @@ export default {
                         </ul>
                     </div>
                 </div>
-
+                
+                <div class="col-md-3 col-sm-6 d-flex justify-content-center">
+                    <div class="footer-info-single">
+                        <h2 class="title fw-bold">metodi di Pagamento </h2>
+                    </div>
+                </div>
                 <div class="col-12">
-                    <div class="row  d-flex justify-content-center">
-                        <div class="col-5">
-                            <div class="footer-info-single">
-                                <h2 class="title fw-bold">Metodi di Pagamento</h2>
-                                <p>Sample HTML page with Twitter's Bootstrap. Code example of Easy Sticky Footer using HTML, Javascript, jQuery, and CSS. This bootstrap tutorial covers all the major elements of responsive</p>
-                            </div>
-                        </div>
+                    <div class="social-media">
+                        <ul class="list-inline pt-4 d-md-flex">
+                            <li><a href="#" class="text-decoration-none"><i class="fa-brands fa-cc-paypal fa-2xl py-4 px-2"></i><span class=" text-white">PayPal</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa-brands fa-cc-apple-pay fa-2xl py-4 px-2"></i><span class=" text-white">AppPay</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa-brands fa-cc-amazon-pay fa-2xl py-4 px-2"></i><span class=" text-white">AmazonPay</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa-brands fa-cc-visa fa-2xl py-4 px-2"></i><span class=" text-white">Visa</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa-brands fa-cc-mastercard fa-2xl py-4 px-2"></i><span class=" text-white">Mastercard</span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -166,6 +174,7 @@ export default {
     footer.nb-footer .footer-info-single ul li a:hover {
         color: $primary;
     }
+     
     footer.nb-footer .footer-info-single p {
         font-size: 13px;
         line-height: 20px;
@@ -182,6 +191,6 @@ export default {
         padding: 0;
     }
     img{
-        width: 50%;
+        width: 60%;
     }
 </style>
