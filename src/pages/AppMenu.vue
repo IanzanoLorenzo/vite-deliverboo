@@ -23,9 +23,6 @@ export default {
         //localStorage.clear();
         // Effettua una chiamata API per ottenere i piatti in base al parametro del percorso (slug)
         this.getDishes(this.$route.params.slug);
-        
-        // Calcola il prezzo totale iniziale
-        this.totalPrice();
     },
     methods: {
         getDishes(slug){
@@ -38,15 +35,20 @@ export default {
                 this.dishes = response.data.response.dishes;
                 //memorizzo l'id del ristorante
                 this.resturant = response.data.response.resturant;
-                // Recupera i dati del carrello dalla memoria locale, se presenti
-                const storedCart = localStorage.getItem(this.resturant.id);
-            
-                if (storedCart) {
-                    this.cart = JSON.parse(storedCart);
-                }
-                
+                this.getCart();
                 this.store.loading = false;
             });
+        },
+        getCart(){
+            // Recupera i dati del carrello dalla memoria locale, se presenti
+            const storedCart = localStorage.getItem(this.resturant.id);
+            
+            if (storedCart) {
+                this.cart = JSON.parse(storedCart);
+            }else{
+                this.cart = []
+            }
+            this.totalPrice();
         },
         addToCart(dish) {
             // Verifica se il piatto è già presente nel carrello
@@ -65,11 +67,7 @@ export default {
                 });
             }
 
-            // Salva il carrello aggiornato nella memoria locale per la persistenza
-            localStorage.setItem(this.resturant.id, JSON.stringify(this.cart));
-
-            // Ricalcola il prezzo totale
-            this.totalPrice();
+           this.updateCart();
         },
         removeFromCart(dish, index){
             // Verifica se il piatto è presente nel carrello
@@ -80,17 +78,22 @@ export default {
                 existingDish.quantity--;
             } else if (existingDish && existingDish.quantity === 1){
                 // Se il piatto è l'ultimo nel carrello, rimuovilo
-                this.cart.splice(index, 1)
+                this.removeDishFromCart(index);
             }
 
+            this.updateCart();
+        },
+        removeDishFromCart(index){
+            this.cart.splice(index, 1)
+            this.updateCart();
+        },
+        updateCart(){
             if(this.cart.length > 0){
                 // Salva il carrello aggiornato nella memoria locale
                 localStorage.setItem(this.resturant.id, JSON.stringify(this.cart));
             } else {
-                localStorage.removeItem(this.resturant.id);
+                this.deleteCart();
             }
-
-            // Ricalcola il prezzo totale
             this.totalPrice();
         },
         totalPrice(){
@@ -105,6 +108,10 @@ export default {
 
             // Arrotonda il prezzo totale a due decimali
             this.priceTotal = Math.round(this.priceTotal * 100) / 100;
+        },
+        deleteCart(){
+            localStorage.removeItem(this.resturant.id);
+            this.getCart();
         }
     },
 }
@@ -166,17 +173,22 @@ export default {
                         <!-- Prezzo del piatto nel carrello -->
                         <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
                         <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
-                        <div class="d-flex justify-content-between">
-                            <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
+                        <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
+                            <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
+                            <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
                         </div>
                     </li>
                     <!-- Riepilogo dell'ordine -->
-                    <div class="text-center bg-white">
+                    <div class="text-center bg-white pb-3">
                         <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
                         <!-- Visualizzazione del prezzo totale -->
                         <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
                         <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.id } }" class="btn btn-primary">Procedi al Pagamento</router-link>
+                        <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
                     </div>
                 </ul>
                 <!-- Fine lista del carrello -->
@@ -186,6 +198,8 @@ export default {
     <!-- Fine del contenitore principale -->
 </template>
 <style lang="scss" scoped>
+    @import '../styles/_variables.scss';
+    @import '../styles/generals.scss';
     .padd-b{
         padding-bottom: 100px;
     }
@@ -213,6 +227,22 @@ export default {
         img{
             width: 100%;
         }
+    }
+
+    .button_delive_two {
+        background-color: $primary;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+    }
+    
+    .button_delive_two:hover {
+        background: $warning;
+        border: 1px solid $danger;
+        color: white;
     }
     
 </style>

@@ -5,15 +5,3 @@ $primary: #ac0a55;
 $warning: #ff8800;
 @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
-
-
-.button_delive_two {
-    background-color: $primary;
-    color: white;
-}
-
-.button_delive_two:hover {
-    background: $warning;
-    border: 1px solid $danger;
-    color: white;
-}
