@@ -100,7 +100,7 @@ export default {
     </footer>
 
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
     .span-or {

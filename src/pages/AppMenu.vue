@@ -185,7 +185,7 @@ export default {
     </div>
     <!-- Fine del contenitore principale -->
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
     .padd-b{
         padding-bottom: 100px;
     }
@@ -197,6 +197,7 @@ export default {
     .card {
         overflow: hidden;
         border-radius: 15px !important;
+        border: none;
         .img-fluid{
             height: 200px;
             object-fit: cover;

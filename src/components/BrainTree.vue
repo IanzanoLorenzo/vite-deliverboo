@@ -13,7 +13,8 @@ export default {
             clientToken: '',
             errorMessage: false,
             cart: null,
-            fatalError: false
+            fatalError: false,
+            total_price: 0
         }
     },
     mounted() {
@@ -24,6 +25,7 @@ export default {
             if (this.formDataProp['name'] && this.formDataProp['surname'] && this.formDataProp['email'] && this.formDataProp['address'] && this.formDataProp['delivery_time'] && this.formDataProp) {
                 let new_cart = this.cart;
                 let rest_id = this.$route.params.cart;
+                let price_total = this.total_price;
                 let formData = this.formDataProp;
                 this.axios.get(this.store.basicUrl+'api/payments/token').then((risp)=>{
                     this.clientToken = risp.data.response.clientToken;
@@ -50,7 +52,7 @@ export default {
                                                 'costumer_name':  formData['name'],
                                                 'costumer_surname':  formData['surname'],
                                                 'delivery_time' :  formData['delivery_time'],
-                                                'total_price': '20.00'
+                                                'total_price': price_total
                                             }
                                         }).then((risp)=>{
                                             console.log(risp.data.response);
@@ -72,6 +74,9 @@ export default {
             let storedCart = localStorage.getItem(cart);
             if (storedCart) {
                 this.cart = JSON.parse(storedCart);
+                this.cart.forEach(dish => {
+                    this.total_price += dish.price * dish.quantity;
+                });
             }else{
                 this.fatalError = true
             }
@@ -90,6 +95,7 @@ export default {
         <a href="#" @click="createCheckoutForm">Inserisci il metodo di pagamento</a>
         <div id="dropin-container"></div>
         <button id="submit-button" class="button btn btn-primary">Purchase</button>
+        <span>Prezzo da pagare: &euro;{{total_price}}</span>
     </div>
 </template>
 <style lang="scss" scoped>

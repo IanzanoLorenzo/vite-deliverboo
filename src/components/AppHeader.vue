@@ -49,7 +49,7 @@ export default {
         </div>
     </header>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 
 header{
     //box-shadow: 2 2px 4px rgba(2, 2, 2, 1);
