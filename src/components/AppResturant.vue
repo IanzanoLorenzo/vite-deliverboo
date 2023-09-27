@@ -129,7 +129,7 @@ export default {
 
     //RESTURANT CARD
     .trans_box{
-        background-color: rgba(255, 255, 255, 0.589);
+        background-color: rgba(255, 255, 255, 0.537);
         backdrop-filter: blur(3px);
         border-radius: 10px;
         padding: 25px 20px 25px 20px;
