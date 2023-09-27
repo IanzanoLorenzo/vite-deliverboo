@@ -50,7 +50,6 @@ export default {
             o un gustoso hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
         </p>
         <!-- CITAZIONE -->
-        
         <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
             <blockquote class="blockquote">
                 <p>
@@ -67,26 +66,23 @@ export default {
         <p class="text-white display-6 mb-3 pt-5">
             E tu, quale tradizione vorresti scoprire questa volta?
         </p>
-
         <div class="row mt-2">
             <!-- RICERCA PER TIPOLOGIA  -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" >
                 <!-- CHECKBOX -->
                 <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
-
                     <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                     <!-- TIPOLOGIA -->
                     <label class="form-check-label" :for="type.name+'_type'">
                         {{ type.name }}
                     </label>
-                    
+
                     <!-- ICONE -->
                     <span v-for="type in resturant.types" :key="type.id">
                         <i :class="['fas', type.icon]" class="me-5 fs-3"></i>
                     </span>
 
                 </div>
-
                 <!-- PULSANTE FILTRA -->
                 <button class="btn btn-primary" @click="getResturants()">
                     Filtra
@@ -95,7 +91,9 @@ export default {
             <div class="trans_box">
                 <div class="row">
                     <!-- Controllo se ci sono ristoranti -->
-                    <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente</div>
+                    <div class="fs-3 text-center" v-if="store.resturants.length === 0">
+                        Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
+                    </div>
                     <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
                     <div v-else class="col-12 col-md-6 mb-5 " v-for="resturant in store.resturants" :key="resturant.id"> 
                         <!--***** RESTURANT CARD ***** -->
@@ -114,11 +112,9 @@ export default {
     .pad_bot{
         padding-bottom: 100px;
     }
-
     .pad_top_extra{
         padding-top: 80px;
     }
-
     //CITAZIONE
     figure{
         .blockquote, .blockquote-footer{
@@ -126,7 +122,6 @@ export default {
              
         }
     }  
-
     //RESTURANT CARD
     .trans_box{
         background-color: rgba(255, 255, 255, 0.537);
