@@ -6,12 +6,19 @@ export default {
 <template>
     <footer class="nb-footer">
         <div class="container">
+            <!-- LOGO -->
+            <div class="d-flex justify-content-center mt-5">
+                <img src="../assets/logo/logo-deliveboo.png" class="logo_delive" alt="logo-deliveboo">
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="about">
-                        <img src="images/logo.png" class="img-responsive center-block" alt="">
-                        <p>"Ci fa piacere che tu abbia scelto il nostro servizio di consegna. Ti invitiamo a seguirci sui social per rimanere aggiornato sulle nostre offerte speciali e le ultime novità. Buon appetito!"</p>
-
+                        <!-- About -->
+                        <p>"Ci fa piacere che tu abbia scelto il nostro servizio di consegna.
+                            Ti invitiamo a seguirci sui social per rimanere aggiornato sulle nostre 
+                            offerte speciali e le ultime novità. <span class="text-warning">Buon appetito!</span> "
+                        </p>
+                        <!-- SOCIAL MEDIA -->
                         <div class="social-media">
                             <ul class="list-inline d-flex justify-content-center">
                                 <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
@@ -23,9 +30,9 @@ export default {
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-info-single">
+                        <!--SCOPRI DELIVEROO  -->
                         <h2 class="title fw-bold">Scopri Deliveroo</h2>
                         <ul class="list-unstyled">
                             <li><a href="#">Chi siamo</a></li>
@@ -39,9 +46,10 @@ export default {
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-info-single">
+                        <!-- > NOTE LEGALI -->
                         <h2 class="title fw-bold">Note legali</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#">Termini & Condizioni</a></li>
+                            <li><a href="#">Termini &amp; Condizioni</a></li>
                             <li><a href="#">Informativa sulla privacy</a></li>
                             <li><a href="#">Cookies</a></li>
                         </ul>
@@ -132,7 +140,7 @@ export default {
     footer.nb-footer .about p {
         font-size: 13px;
         color: #999;
-        margin-top: 30px;
+        margin-top: 5px;
     }
     footer.nb-footer .about .social-media {
         margin-top: 15px;
