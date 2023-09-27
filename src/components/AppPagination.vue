@@ -17,7 +17,7 @@
     <nav aria-label="Pagination">
         <ul class="pagination justify-content-center">
             <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                <button class="page-link" @click.t="changePage(currentPage - 1)"><i class="fa-solid fa-circle-arrow-left fa-xl"></i></button>
+                <button class="page-link" @click="changePage(currentPage - 1)"><i class="fa-solid fa-circle-arrow-left fa-xl"></i></button>
             </li>
             <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
                 <button class="page-link" @click="changePage(page)">{{ page }}</button>

@@ -103,7 +103,7 @@ export default {
                         <!--**** FINE RESTURANT CARD **** -->
                     </div>
 
-                    <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants(page)"/>
+                    <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants"/>
                 </div>
             </div>
         </div>
