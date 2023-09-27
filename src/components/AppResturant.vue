@@ -15,7 +15,7 @@ export default {
       axios,
       selected_type: [],
       currentPage: 1, // Inizializza la pagina corrente
-      perPage: 4, // Numero di ristoranti per pagina
+      totalPages: 0,
     }
   },
   mounted() {
@@ -25,42 +25,27 @@ export default {
       console.error('c\'è stato un problema con la chiamata api')
     }
   },
-  computed: {
-    visibleRestaurants() {
-      // Calcola gli indici di inizio e fine in base alla pagina corrente e al numero di ristoranti per pagina
-      const startIndex = (this.currentPage - 1) * this.perPage;
-      const endIndex = startIndex + this.perPage;
-
-      // Estrai i ristoranti nell'intervallo calcolato
-      return this.store.resturants.slice(startIndex, endIndex);
-    },
-    // Calcola il numero totale di pagine in base al numero di ristoranti e ristoranti per pagina
-    totalPages() {
-      return Math.ceil(this.store.resturants.length / this.perPage);
-    },
-  },
   methods: {
     // Funzione per ottenere i ristoranti tramite una chiamata Axios
-    getResturants() {
+    getResturants(page) {
       if (this.selected_type.length === 0) {
-        axios.get(this.store.basicUrl + 'api/resturants').then((risp) => {
+        axios.get(this.store.basicUrl + 'api/resturants?page='+page).then((risp) => {
           // Memorizza i ristoranti e i tipi di ristoranti nello store
-          this.store.resturants = risp.data.response.resturants;
+          this.store.resturants = risp.data.response.resturants.data;
           this.store.types = risp.data.response.types;
+          this.currentPage = risp.data.response.resturants.current_page;
+          this.totalPages = risp.data.response.resturants.last_page;
         })
       } else {
         let search = this.selected_type.join('-');
-        axios.get(this.store.basicUrl + 'api/resturants/search/' + search).then((risp) => {
+        axios.get(this.store.basicUrl + 'api/resturants/search/'+search+'?page='+page).then((risp) => {
           // Memorizza i ristoranti e i tipi di ristoranti nello store
           this.store.resturants = risp.data.response.resturants;
           this.store.types = risp.data.response.types;
+          this.currentPage = risp.data.response.resturants.current_page;
+          this.totalPages = risp.data.response.resturants.last_page;
         })
       }
-    },
-
-    // Funzione per aggiornare la pagina corrente
-    updatePage(newPage) {
-      this.currentPage = newPage;
     },
   },
 }
@@ -99,7 +84,7 @@ export default {
                 </div>
 
                 <!-- PULSANTE FILTRA -->
-                <button class="btn btn-primary" @click="getResturants()">
+                <button class="btn btn-primary" @click="getResturants(1)">
                 Filtra
                 </button>
             </div>
@@ -112,13 +97,13 @@ export default {
                     </div>
 
                     <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                    <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in visibleRestaurants" :key="resturant.id">
+                    <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in store.resturants" :key="resturant.id">
                         <!--***** RESTURANT CARD ***** -->
                         <ResturantCard :resturant="resturant" />
                         <!--**** FINE RESTURANT CARD **** -->
                     </div>
 
-                    <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="updatePage" />
+                    <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants(page)"/>
                 </div>
             </div>
         </div>
