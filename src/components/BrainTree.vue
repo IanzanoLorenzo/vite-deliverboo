@@ -27,6 +27,7 @@ export default {
                 let rest_id = this.$route.params.cart;
                 let price_total = this.total_price;
                 let formData = this.formDataProp;
+                let router = this.$router;
                 this.axios.get(this.store.basicUrl+'api/payments/token').then((risp)=>{
                     this.clientToken = risp.data.response.clientToken;
                     let button = document.querySelector('#submit-button');
@@ -46,7 +47,7 @@ export default {
                                             'nonce' : payload.nonce,
                                             'cart' : new_cart,
                                             'order': {
-                                                'resturant_id' : rest_id,
+                                                'resturant_slug' : rest_id,
                                                 'address':  formData['address'],
                                                 'costumer_email' :  formData['email'],
                                                 'costumer_name':  formData['name'],
@@ -57,8 +58,9 @@ export default {
                                         }).then((risp)=>{
                                             console.log(risp.data.response);
                                             localStorage.removeItem(rest_id);
+                                            router.push({name: 'home'})
                                         }).catch((error) => {
-                                            console.log(error)
+                                            console.log('ziopera')
                                         })
                                     }
                                 });
