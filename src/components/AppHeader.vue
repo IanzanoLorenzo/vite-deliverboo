@@ -8,28 +8,19 @@ export default {
         <!-- NAVBAR BOOTSTRAP -->
         <nav class="navbar navbar-expand-md">
             <div class="container">
-
                 <!--*-- MOBILE  --*-->
                     <!-- LOGO -->
                     <router-link :to="'/'" class="navbar-brand d-flex align-items-center">
                         <img src="../assets/img/logo-deliveboo.png" class="logo_delive" alt="logo-deliveboo">
-
                         <!-- ****** INSERIRE SCRITTA DELIVEBOO VICINO AL LOGO ******-->
-
                     </router-link>
-                
                     <!-- HAMBURGER MENU -->
                     <button class="navbar-toggler hamburger_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                 <!--*-- MOBILE  --*-->
-
-
-
                 <!--*-- TABLET -- *-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                    <!-- NAV SINISTRA -->
                     <ul class="navbar-nav me-auto ">
                         <!-- home  -->                        
@@ -39,8 +30,6 @@ export default {
                             </router-link>
                         </li>
                     </ul>
-
-
                     <!-- NAV DESTRA -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item nav_item_hover">
@@ -49,20 +38,15 @@ export default {
                                 Accedi
                             </a>
                         </li>
-
                         <li class="nav-item nav_item_hover">
                             <!-- Registrati -->
                             <a class="nav-link text-dark fs-5 p-1" href="http://127.0.0.1:8000/register">
                                 Registrati
                             </a>
                         </li>
-
-
                     </ul>
-
                 </div>
                 <!--*-- TABLET -- *-->
-
             </div>
         </nav>
         <!--FINE NAVBAR BOOTSTRAP -->
@@ -78,9 +62,8 @@ export default {
     box-shadow: none !important;
 }
 .hamburger_menu:hover {
-    background-color: rgba(255, 255, 255, 0.479) !important;
+    background: linear-gradient(60deg, #ffffff76 40%, $warning 100%) !important;
 }
-
 
 .nav_item_hover:hover {
     font-weight: 900;
@@ -100,24 +83,14 @@ export default {
     background-color: rgba(245, 222, 179, 0.5);
 }
 
-
-
-
-
 header{
-    //box-shadow: 2 2px 4px rgba(2, 2, 2, 1);
-    //position:fixed
-    //background-color: $light !important;
     box-shadow: 0px 0px 8px 3px rgb(95, 77, 42);
     z-index: 1;
 }
-
 .logo_delive{
     width: 100px;
 }
-
 .shadow_title {
     text-shadow: 3px 3px white;
-}
-    
+}  
 </style>

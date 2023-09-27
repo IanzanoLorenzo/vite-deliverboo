@@ -21,8 +21,8 @@ export default {
                     <!-- BOX BLUR -->
                     <div class="text-center trans_box">
                         <!-- SLOGAN -->
-                        <h2>
-                            Portiamo il sapore del mondo <br> direttamente a casa tua!
+                        <h2 class="text_gradient">
+                            Portiamo il sapore del mondo  direttamente a casa tua!
                         </h2>
                         
                     </div>
@@ -49,11 +49,20 @@ export default {
         padding: 30px;
         margin: 30px;
         border-radius: 10px;
-        //box-shadow: 0px 6mm 5px 5px rgb(99, 99, 99);
+        box-shadow: 0px 3px 5px 5px rgba(75, 74, 67, 0.383);
 
         position:relative;
-        top: 260px
+        top: 275px;
     }
+
+    .text_gradient{
+        background: linear-gradient(83deg, #920505 40%,#e307a1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+    }
+
 
 }
     
