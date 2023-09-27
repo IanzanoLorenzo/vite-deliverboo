@@ -15,7 +15,7 @@ export default {
                         <!-- ****** INSERIRE SCRITTA DELIVEBOO VICINO AL LOGO ******-->
                     </router-link>
                     <!-- HAMBURGER MENU -->
-                    <button class="navbar-toggler hamburger_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <button class="navbar-toggler hamburger_menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 <!--*-- MOBILE  --*-->
@@ -86,6 +86,7 @@ export default {
 header{
     box-shadow: 0px 0px 8px 3px rgb(95, 77, 42);
     z-index: 1;
+    
 }
 .logo_delive{
     width: 100px;
