@@ -120,93 +120,103 @@ export default {
 <template>
     <AppLoader  v-if="store.loading"/>
     
-    <div v-else class="container pt-5 pb-5">
-        <!--RISTORANTR SCELTO  -->
-        <div class="row">
-            <div class="card col-12 col-lg-8 offset-lg-2 p-0 mb-5">
-                <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
-                <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
-                <div class="card-body">
-                    <h2 class="card-title ">{{ resturant.name }}</h2>
-                    <div class="card-text pb-2">
-                        <em>
-                            {{ resturant.address }}
-                        </em>
-                    </div>
-                    <div class="badge bg-primary mx-1" v-for="type in resturant.types" :key="type.id">
-                    {{ type.name }}
-                    </div>
+    <div v-else class="pt-5 pb-5">
+        <!--RISTORANTE SCELTO  -->
+        <div class="container trans_box mb-5">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <!-- Immagine risto -->
+                    <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid w-50">
+                    <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
                 </div>
+                <div class="col-12 col-lg-6">
+                     <!-- Dati risto -->
+                    <div class="">
+                        <h2 class="text-white mt-4">
+                            {{ resturant.name }}
+                        </h2>
+                        <div class="text-white mb-5">
+                            <em>
+                                {{ resturant.address }}
+                            </em>
+                        </div>
+                        <div class="fs-5 badge bg-primary mx-2 mt-3" v-for="type in resturant.types" :key="type.id">
+                            {{ type.name }}
+                        </div>
+                    </div>
+                </div>    
             </div>
         </div>
         <!--FINE RISTORANTE SCELTO  -->
-
-        <div class="row">
-            <!-- MENU -->
-            <div class="col-12 col-lg-8 card p-0 mb-5">
-                <!-- Lista dei piatti disponibili -->
-                <ul class="list-group list-group-flush">
-                    <!-- Titolo del menu -->
-                    <li class="list-group-item bg-primary">
-                        <h2 class="text-white fw-bold text-center">MENU'</h2>
-                    </li>
-                    <!-- Iterazione sui piatti nel menu -->
-                    <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
-                        <!-- Nome del piatto -->
-                        <h2 class="text-primary fw-bold">{{ dish.name }}</h2>
-                        <!-- Ingredienti del piatto -->
-                        <span><em>{{ dish.ingredients }}</em></span>
-                        <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
-                        <div class="d-flex justify-content-between">
-                            <span class="fw-bold">{{ dish.price }}€</span>
-                            <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- FINE MENU -->
-
-            <!-- CARRELLO --> 
-                <div class="col-12 col-lg-4">
-                    <div class="cart-wrapper">
-                        <!-- Lista dei piatti nel carrello -->
-                        <ul class="list-group list-group-flush pt-2">
-                            <!-- Titolo del carrello -->
-                            <li class="list-group-item bg-primary">
-                                <h2 class="text-center fw-bold text-white text-uppercase">
-                                    CARRELLO <br> "{{ resturant.name }}" 
-                                </h2>
-                            </li>
-                            <!-- Iterazione sugli elementi nel carrello -->
-                            <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
-                                <!-- Nome del piatto nel carrello -->
-                                <h3 class="text-primary fw-bold">{{ item.name }}</h3>
-                                <!-- Prezzo del piatto nel carrello -->
-                                <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
-                                <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
-                                    <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
-                                    <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
-                                </div>
-                            </li>
-                            <!-- Riepilogo dell'ordine -->
-                            <div class="text-center bg-white pb-3">
-                                <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
-                                <!-- Visualizzazione del prezzo totale -->
-                                <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
-                                <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
-                                <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
+        <div class="container">
+            <div class="row">
+                <!-- MENU -->
+                <div class="col-12 col-lg-8 card p-0 mb-5">
+                    <!-- Lista dei piatti disponibili -->
+                    <ul class="list-group list-group-flush">
+                        <!-- Titolo del menu -->
+                        <li class="list-group-item bg-primary">
+                            <h2 class="text-white fw-bold text-center">MENU'</h2>
+                        </li>
+                        <!-- Iterazione sui piatti nel menu -->
+                        <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
+                            <!-- Nome del piatto -->
+                            <h2 class="text-primary fw-bold">{{ dish.name }}</h2>
+                            <!-- Ingredienti del piatto -->
+                            <span><em>{{ dish.ingredients }}</em></span>
+                            <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">{{ dish.price }}€</span>
+                                <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
                             </div>
-                        </ul>
-                        <!-- Fine lista del carrello -->
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            
-            <!-- CARRELLO -->
+                <!-- FINE MENU -->
+
+                <!-- CARRELLO --> 
+                    <div class="col-12 col-lg-4">
+                        <div class="cart-wrapper">
+                            <!-- Lista dei piatti nel carrello -->
+                            <ul class="list-group list-group-flush pt-2">
+                                <!-- Titolo del carrello -->
+                                <li class="list-group-item bg-primary">
+                                    <h2 class="text-center fw-bold text-white text-uppercase">
+                                        CARRELLO <br> "{{ resturant.name }}" 
+                                    </h2>
+                                </li>
+                                <!-- Iterazione sugli elementi nel carrello -->
+                                <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
+                                    <!-- Nome del piatto nel carrello -->
+                                    <h3 class="text-primary fw-bold">{{ item.name }}</h3>
+                                    <!-- Prezzo del piatto nel carrello -->
+                                    <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
+                                    <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
+                                        <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
+                                        <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
+                                    </div>
+                                </li>
+                                <!-- Riepilogo dell'ordine -->
+                                <div class="text-center bg-white pb-3">
+                                    <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
+                                    <!-- Visualizzazione del prezzo totale -->
+                                    <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
+                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
+                                    <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
+                                </div>
+                            </ul>
+                            <!-- Fine lista del carrello -->
+                        </div>
+                    </div>
+                
+                <!-- CARRELLO -->
+
+            </div>
         </div>
     </div>
     <!-- Fine del contenitore principale -->
@@ -214,6 +224,14 @@ export default {
 <style lang="scss" scoped>
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
+
+    .trans_box{
+        background-color: rgba(28, 13, 43, 0.64);
+        backdrop-filter: blur(3px);
+        border-radius: 10px;
+        padding: 25px 20px 25px 20px;
+        box-shadow: 1px 2px 14px 5px #00000070;
+    }
 
     .cart-wrapper {
         position: -webkit-sticky;
