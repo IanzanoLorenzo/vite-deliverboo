@@ -40,7 +40,7 @@ export default {
         let search = this.selected_type.join('-');
         axios.get(this.store.basicUrl + 'api/resturants/search/'+search+'?page='+page).then((risp) => {
           // Memorizza i ristoranti e i tipi di ristoranti nello store
-          this.store.resturants = risp.data.response.resturants;
+          this.store.resturants = risp.data.response.resturants.data;
           this.store.types = risp.data.response.types;
           this.currentPage = risp.data.response.resturants.current_page;
           this.totalPages = risp.data.response.resturants.last_page;
