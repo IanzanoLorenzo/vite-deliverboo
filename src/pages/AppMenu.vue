@@ -148,25 +148,32 @@ export default {
             </div>
         </div>
         <!--FINE RISTORANTE SCELTO  -->
+
         <div class="container">
             <div class="row">
                 <!-- MENU -->
-                <div class="col-12 col-lg-8 card p-0 mb-5">
+                <div class="col-12 col-lg-8 card p-0 mb-4">
                     <!-- Lista dei piatti disponibili -->
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush rounded-0">
                         <!-- Titolo del menu -->
                         <li class="list-group-item bg-primary">
-                            <h2 class="text-white fw-bold text-center">MENU'</h2>
+                            <h2 class="text-white text-center mt-2">
+                                MENU'
+                            </h2>
                         </li>
                         <!-- Iterazione sui piatti nel menu -->
                         <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
                             <!-- Nome del piatto -->
-                            <h2 class="text-primary fw-bold">{{ dish.name }}</h2>
+                            <h2 class="text-primary fw-bold">
+                                {{ dish.name }}
+                            </h2>
                             <!-- Ingredienti del piatto -->
                             <span><em>{{ dish.ingredients }}</em></span>
                             <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
                             <div class="d-flex justify-content-between">
-                                <span class="fw-bold">{{ dish.price }}€</span>
+                                <span class="fw-bold">
+                                    {{ dish.price }}€
+                                </span>
                                 <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
                             </div>
                         </li>
@@ -271,9 +278,9 @@ export default {
     }
     
     .button_delive_two:hover {
-        background: $warning;
-        border: 1px solid $danger;
-        color: white;
+        background: white;
+        color: $primary;
+        border: 1px solid $primary;
     }
     
 </style>
