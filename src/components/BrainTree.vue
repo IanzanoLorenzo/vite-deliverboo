@@ -33,7 +33,8 @@ export default {
                     let button = document.querySelector('#submit-button');
                     braintree.dropin.create({
                         authorization: this.clientToken,
-                        selector: '#dropin-container'
+                        selector: '#dropin-container',
+                        locale: 'it_IT'
                     }, function (err, instance) {
                         if(err){
                             console.log(err)
@@ -53,7 +54,8 @@ export default {
                                                 'costumer_name':  formData['name'],
                                                 'costumer_surname':  formData['surname'],
                                                 'delivery_time' :  formData['delivery_time'],
-                                                'total_price': price_total
+                                                'total_price': price_total,
+                                                'note' : formData['note']
                                             }
                                         }).then((risp)=>{
                                             console.log(risp.data.response);

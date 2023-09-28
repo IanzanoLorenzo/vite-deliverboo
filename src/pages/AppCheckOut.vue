@@ -9,18 +9,23 @@ export default {
             customerName: '',
             customerSurname: '',
             customerEmail: '',
-            adderss: '',
-            deliveryTime: ''
+            address: '',
+            deliveryTime: '',
+            note: null
         }
     },
     methods: {
         dataForm(){
+            if (this.customerName && this.customerSurname && this.customerEmail && this.address && this.deliveryTime) {
             return {
                 'name' : this.customerName,
                 'surname' : this.customerSurname,
                 'email' : this.customerEmail,
-                'address' : this.adderss,
-                'delivery_time' : this.deliveryTime
+                'address' : this.address,
+                'delivery_time' : this.deliveryTime,
+                'note':this.note
+            }}else{
+                return null
             }
         }
     },
@@ -32,24 +37,28 @@ export default {
         <div class="row">
             <div class="col-12 col-md-6 pt-4">
                 <div class="mb-3">
-                    <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" v-model="customerName">
+                    <label class="form-label">Nome*</label>
+                    <input type="text" class="form-control" v-model="customerName" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Cognome</label>
-                    <input type="text" class="form-control" v-model="customerSurname">
+                    <label class="form-label">Cognome*</label>
+                    <input type="text" class="form-control" v-model="customerSurname" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
+                    <label class="form-label">Email*</label>
                     <input type="email" class="form-control" v-model="customerEmail">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Indirizzo</label>
-                    <input type="text" class="form-control" v-model="adderss">
+                    <label class="form-label">Indirizzo*</label>
+                    <input type="text" class="form-control" v-model="address">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Orario</label>
+                    <label class="form-label">Orario*</label>
                     <input type="time" class="form-control" v-model="deliveryTime">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Note dell'ordine</label>
+                    <textarea class="form-control" cols="30" rows="3" v-model="note"></textarea>
                 </div>
             </div>
             <div class="col-12 col-md-6">
