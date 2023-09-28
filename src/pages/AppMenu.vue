@@ -23,6 +23,7 @@ export default {
         //localStorage.clear();
         // Effettua una chiamata API per ottenere i piatti in base al parametro del percorso (slug)
         this.getDishes(this.$route.params.slug);
+
     },
     methods: {
         getDishes(slug){
@@ -118,10 +119,10 @@ export default {
 </script>
 <template>
     <AppLoader  v-if="store.loading"/>
-
-    <!-- Inizia il contenitore principale -->
-    <div v-else class="container pt-5 padd-b">
-        <div class="row padd-b">
+    
+    <div v-else class="container pt-5 pb-5">
+        <!--RISTORANTR SCELTO  -->
+        <div class="row">
             <div class="card col-12 col-lg-8 offset-lg-2 p-0 mb-5">
                 <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid">
                 <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
@@ -137,7 +138,11 @@ export default {
                     </div>
                 </div>
             </div>
+        </div>
+        <!--FINE RISTORANTE SCELTO  -->
 
+        <div class="row">
+            <!-- MENU -->
             <div class="col-12 col-lg-8 card p-0 mb-5">
                 <!-- Lista dei piatti disponibili -->
                 <ul class="list-group list-group-flush">
@@ -159,40 +164,49 @@ export default {
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-4">
-                <!-- Lista dei piatti nel carrello -->
-                <ul class="list-group list-group-flush">
-                    <!-- Titolo del carrello -->
-                    <li class="list-group-item bg-primary">
-                        <h2 class="text-center fw-bold text-white text-uppercase">CARRELLO <br> "{{ resturant.name }}" </h2>
-                    </li>
-                    <!-- Iterazione sugli elementi nel carrello -->
-                    <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
-                        <!-- Nome del piatto nel carrello -->
-                        <h3 class="text-primary fw-bold">{{ item.name }}</h3>
-                        <!-- Prezzo del piatto nel carrello -->
-                        <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
-                        <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
-                            <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
-                            <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
-                        </div>
-                    </li>
-                    <!-- Riepilogo dell'ordine -->
-                    <div class="text-center bg-white pb-3">
-                        <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
-                        <!-- Visualizzazione del prezzo totale -->
-                        <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
-                        <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
-                        <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
+            <!-- FINE MENU -->
+
+            <!-- CARRELLO --> 
+                <div class="col-12 col-lg-4">
+                    <div class="cart-wrapper">
+                        <!-- Lista dei piatti nel carrello -->
+                        <ul class="list-group list-group-flush">
+                            <!-- Titolo del carrello -->
+                            <li class="list-group-item bg-primary">
+                                <h2 class="text-center fw-bold text-white text-uppercase">
+                                    CARRELLO <br> "{{ resturant.name }}" 
+                                </h2>
+                            </li>
+                            <!-- Iterazione sugli elementi nel carrello -->
+                            <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
+                                <!-- Nome del piatto nel carrello -->
+                                <h3 class="text-primary fw-bold">{{ item.name }}</h3>
+                                <!-- Prezzo del piatto nel carrello -->
+                                <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
+                                <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
+                                    <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
+                                    <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
+                                </div>
+                            </li>
+                            <!-- Riepilogo dell'ordine -->
+                            <div class="text-center bg-white pb-3">
+                                <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
+                                <!-- Visualizzazione del prezzo totale -->
+                                <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
+                                <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
+                                <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
+                            </div>
+                        </ul>
+                        <!-- Fine lista del carrello -->
                     </div>
-                </ul>
-                <!-- Fine lista del carrello -->
-            </div>
+                </div>
+            
+            <!-- CARRELLO -->
         </div>
     </div>
     <!-- Fine del contenitore principale -->
@@ -200,14 +214,13 @@ export default {
 <style lang="scss" scoped>
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
-    .padd-b{
-        padding-bottom: 50px;
+
+    .cart-wrapper {
+        position: -webkit-sticky;
+        position: sticky;
+        top:0;
     }
-
-    // .fnt-write{
-    //     font-size: 30px;
-    // }
-
+    
     .card {
         overflow: hidden;
         border-radius: 15px !important;
