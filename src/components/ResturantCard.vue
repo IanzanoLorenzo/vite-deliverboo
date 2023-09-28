@@ -19,12 +19,7 @@ export default {
             <img class="img-fluid w-100" v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" >
     
             <!-- IMMAGINE DI DEFAULT RISTO. -->
-            <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" >
-            
-            <!-- POLIGONO MALEDETTO - FORSE SI CAMBIA CON UN PNG IN ILLUSTRATOR -->
-            <!-- <svg viewBox="0 0 235 25" class="absolute_svg h-25" role="img" focusable="false" preserveAspectRatio="xMinYMax slice" >
-                <polygon class="" points="235 0 235 25 0 25"></polygon>
-            </svg> -->
+            <img class="img-fluid w-100"   v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" > 
 
         </div>
         <div class="card-body m-4">
@@ -46,9 +41,6 @@ export default {
             </span>
         </div>
 
-        
-        
-
     </router-link>
 </template>
 
@@ -58,22 +50,7 @@ export default {
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
 
-    .absolute_svg{
-        position: absolute;
-        bottom: 0%;
-        left:19%;
-        fill: rgb(255, 255, 255);
-
-    }
-    .absolute_poly{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        fill: rgb(255, 255, 255);
-    }
-
-    .card {
+    .card{
         overflow: hidden;
         border: none;
         
@@ -81,7 +58,19 @@ export default {
             height: 200px;
             object-fit: cover;
         }
-        
+
+        transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+    }
+
+    .card:hover{
+        background: linear-gradient(45deg, white 40%, $warning 100%);
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+        animation-name: example;
+        animation-duration: 0.25s;
+        border-left: 13px solid $warning;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.505), 0 10px 10px rgba(0, 0, 0, 0.513);
+
     }
 
 </style>
