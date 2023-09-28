@@ -75,7 +75,7 @@ export default {
         </p>
 
         <!-- CITAZIONE -->
-        <figure class="text-center pt-5">
+        <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
             <blockquote class="blockquote">
                 <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
             </blockquote>
@@ -85,7 +85,6 @@ export default {
         <p class="text-white display-6 mb-3 pt-5">
         E tu, quale tradizione vorresti scoprire questa volta?
         </p>
-
         <div class="row mt-2">
         <!-- RICERCA PER TIPOLOGIA -->
             <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -97,7 +96,6 @@ export default {
                         <i :class="['fas', type.icon]"></i> {{ type.name }}
                     </label>
                 </div>
-
                 <!-- PULSANTE FILTRA -->
                 <button class="btn btn-primary" @click="getResturants()">
                 Filtra
@@ -107,17 +105,16 @@ export default {
             <div class="trans_box">
                 <div class="row">
                     <!-- Controllo se ci sono ristoranti -->
-                    <div class="fs-3 text-center mt-5" v-if="store.resturants.length === 0">
+                    <div class="fs-3 text-center" v-if="store.resturants.length === 0">
                         Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
                     </div>
-
                     <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                    <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in visibleRestaurants" :key="resturant.id">
+                    <div v-else class="col-12 col-md-6 mb-5 " v-for="resturant in store.resturants" :key="resturant.id"> 
                         <!--***** RESTURANT CARD ***** -->
-                        <ResturantCard :resturant="resturant" />
-                        <!--**** FINE RESTURANT CARD **** -->
+                        <ResturantCard :resturant="resturant"/>
+                        <!--**** FINE RESTURANT CARD **** -->                      
                     </div>
-
+                    
                     <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="updatePage" />
                 </div>
             </div>
@@ -131,11 +128,9 @@ export default {
     .pad_bot{
         padding-bottom: 100px;
     }
-
     .pad_top_extra{
         padding-top: 80px;
     }
-
     //CITAZIONE
     figure{
         .blockquote, .blockquote-footer{
@@ -143,10 +138,9 @@ export default {
              
         }
     }  
-
     //RESTURANT CARD
     .trans_box{
-        background-color: rgba(255, 255, 255, 0.589);
+        background-color: rgba(255, 255, 255, 0.537);
         backdrop-filter: blur(3px);
         border-radius: 10px;
         padding: 25px 20px 25px 20px;
