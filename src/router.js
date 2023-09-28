@@ -25,7 +25,7 @@ const router = createRouter({
             component: AppMenu
         },
         {
-            path: '/order',
+            path: '/order/:slug',
             name: 'order',
             component: AppOrder
         },

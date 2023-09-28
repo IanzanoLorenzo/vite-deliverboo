@@ -1,6 +1,15 @@
 <script>
     export default {
-        
+        data() {
+            return {
+                cart
+            }
+        },
+        created() {
+            this.cart = localStorage.getItem(this.$router.params.slug);
+            console.log();
+            localStorage.removeItem(this.$router.params.slug);
+        },
     }
 </script>
 <template lang="">

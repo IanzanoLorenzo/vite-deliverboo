@@ -24,7 +24,7 @@ export default {
         createCheckoutForm(){
             if (this.formDataProp['name'] && this.formDataProp['surname'] && this.formDataProp['email'] && this.formDataProp['address'] && this.formDataProp['delivery_time'] && this.formDataProp) {
                 let new_cart = this.cart;
-                let rest_id = this.$route.params.cart;
+                let rest_slug = this.$route.params.cart;
                 let price_total = this.total_price;
                 let formData = this.formDataProp;
                 let router = this.$router;
@@ -47,7 +47,7 @@ export default {
                                             'nonce' : payload.nonce,
                                             'cart' : new_cart,
                                             'order': {
-                                                'resturant_slug' : rest_id,
+                                                'resturant_slug' : rest_slug,
                                                 'address':  formData['address'],
                                                 'costumer_email' :  formData['email'],
                                                 'costumer_name':  formData['name'],
@@ -57,8 +57,7 @@ export default {
                                             }
                                         }).then((risp)=>{
                                             console.log(risp.data.response);
-                                            localStorage.removeItem(rest_id);
-                                            router.push({name: 'order'})
+                                            router.push({name: 'order', params:{slug: rest_slug}});
                                         }).catch((error) => {
                                             console.log('ziopera')
                                         })
