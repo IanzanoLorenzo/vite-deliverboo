@@ -58,7 +58,7 @@ export default {
                                         }).then((risp)=>{
                                             console.log(risp.data.response);
                                             localStorage.removeItem(rest_id);
-                                            router.push({name: 'home'})
+                                            router.push({name: 'order'})
                                         }).catch((error) => {
                                             console.log('ziopera')
                                         })
@@ -97,8 +97,8 @@ export default {
         <div class="alert alert-warning" v-if="errorMessage">{{errorMessage}}</div>
         <a href="#" @click="createCheckoutForm">Inserisci il metodo di pagamento</a>
         <div id="dropin-container"></div>
-        <button id="submit-button" class="button btn btn-primary">Purchase</button>
-        <span>Prezzo da pagare: &euro;{{total_price}}</span>
+        <button id="submit-button" class="button btn btn-primary">Paga</button>
+        <span>Prezzo da pagare: &euro;{{total_price.toFixed(2)}}</span>
     </div>
 </template>
 <style lang="scss" scoped>
