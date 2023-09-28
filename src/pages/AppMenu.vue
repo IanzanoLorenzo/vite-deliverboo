@@ -201,7 +201,7 @@ export default {
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
     .padd-b{
-        padding-bottom: 100px;
+        padding-bottom: 50px;
     }
 
     // .fnt-write{
