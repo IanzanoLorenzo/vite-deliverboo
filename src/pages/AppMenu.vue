@@ -170,7 +170,7 @@ export default {
                 <div class="col-12 col-lg-4">
                     <div class="cart-wrapper">
                         <!-- Lista dei piatti nel carrello -->
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush pt-2">
                             <!-- Titolo del carrello -->
                             <li class="list-group-item bg-primary">
                                 <h2 class="text-center fw-bold text-white text-uppercase">
@@ -220,7 +220,7 @@ export default {
         position: sticky;
         top:0;
     }
-    
+
     .card {
         overflow: hidden;
         border-radius: 15px !important;
