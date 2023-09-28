@@ -2,13 +2,13 @@
     export default {
         data() {
             return {
-                cart
+                cart : [],
             }
         },
         created() {
-            this.cart = localStorage.getItem(this.$router.params.slug);
+            this.cart = localStorage.getItem(this.$route.params.slug);
             console.log();
-            localStorage.removeItem(this.$router.params.slug);
+            localStorage.removeItem(this.$route.params.slug);
         },
     }
 </script>
