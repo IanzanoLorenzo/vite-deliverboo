@@ -90,7 +90,7 @@ export default {
             <div class="trans_box">
                 <div class="row">
                     <!-- Controllo se ci sono ristoranti -->
-                    <div class="fs-3 text-center" v-if="store.resturants.length === 0">
+                    <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
                         Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
                     </div>
                     <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
@@ -107,28 +107,29 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-    @import '../styles/_variables.scss';
-    @import '../styles/generals.scss';
+  @import '../styles/_variables.scss';
+  @import '../styles/generals.scss';
 
-    .pad_bot{
-        padding-bottom: 100px;
-    }
-    .pad_top_extra{
-        padding-top: 80px;
-    }
-    //CITAZIONE
-    figure{
-        .blockquote, .blockquote-footer{
-            color: $dark;
-             
-        }
-    }  
-    //RESTURANT CARD
-    .trans_box{
-        background-color: rgba(255, 255, 255, 0.537);
-        backdrop-filter: blur(3px);
-        border-radius: 10px;
-        padding: 25px 20px 25px 20px;
-        margin-top: 30px;
-    }
+  .pad_bot{
+      padding-bottom: 100px;
+  }
+  .pad_top_extra{
+      padding-top: 80px;
+  }
+  //CITAZIONE
+  figure{
+      .blockquote, .blockquote-footer{
+          color: $dark;
+            
+      }
+  }  
+  //RESTURANT CARD
+  .trans_box{
+    background-color: rgba(28, 13, 43, 0.64);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    padding: 25px 20px 25px 20px;
+    margin-top: 30px;
+    box-shadow: 1px 2px 14px 5px #00000070;
+  }
 </style>
