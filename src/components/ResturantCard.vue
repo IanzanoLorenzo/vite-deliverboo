@@ -33,6 +33,7 @@ export default {
             </h5>
             <!-- VIA RISTO. -->
             <p class="card-text">
+                <i class="fa-solid fa-location-dot text-warning"></i>
                 {{ resturant.address }}
             </p>
             <!-- TIPOLOGIA RISTO. -->
@@ -58,18 +59,11 @@ export default {
             height: 200px;
             object-fit: cover;
         }
-
-        transition: all 0.5s cubic-bezier(.25,.8,.25,1);
     }
 
     .card:hover{
-        border-top-left-radius: 10px !important;
-        border-bottom-left-radius: 10px !important;
-        animation-name: example;
-        animation-duration: 0.25s;
-        border-left: 13px solid $warning;
+        scale: 1.02;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.505), 0 10px 10px rgba(0, 0, 0, 0.513);
-
     }
 
 </style>
