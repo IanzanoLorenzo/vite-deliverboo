@@ -126,7 +126,7 @@ export default {
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <!-- Immagine risto -->
-                    <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid w-50">
+                    <img v-if="resturant.cover_image === null" src="../assets/img/default-vite.png" class="img-fluid w-100">
                     <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-6">
