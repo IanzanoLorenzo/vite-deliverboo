@@ -18,7 +18,8 @@ export default {
   
     <AppHeader/>
     <router-view></router-view>
-    <AppFooter/>
+    <AppFooter v-if="!store.loading"/>
+
   
 </template>
 <style lang="scss">
