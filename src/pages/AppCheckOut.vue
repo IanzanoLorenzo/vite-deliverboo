@@ -32,9 +32,9 @@ export default {
 }
 </script>
 <template>
-    <div class="container card mt-5">
+    <div class="container margin card mt-5">
         <h2 class="text-center mt-3">Checkout</h2>
-        <div class="row">
+        <div class="row ">
             <div class="col-12 col-md-6 pt-4">
                 <div class="mb-3">
                     <label class="form-label">Nome*</label>
@@ -68,5 +68,7 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-    
+    .margin{
+        margin-bottom: 100px;
+    }
 </style>
