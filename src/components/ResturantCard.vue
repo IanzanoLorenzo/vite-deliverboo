@@ -63,7 +63,6 @@ export default {
     }
 
     .card:hover{
-        background: linear-gradient(45deg, white 40%, $warning 100%);
         border-top-left-radius: 10px !important;
         border-bottom-left-radius: 10px !important;
         animation-name: example;
