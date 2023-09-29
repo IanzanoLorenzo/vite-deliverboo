@@ -34,7 +34,7 @@ export default {
 <template>
     <div class="container margin card mt-5">
         <h2 class="text-center mt-3">Checkout</h2>
-        <form>
+        <form @submit.prevent>
             <div class="row">
                 <div class="col-12 col-md-6 pt-4">
     
