@@ -190,7 +190,7 @@ export default {
                                 <li class="list-group-item ">
                                     <div class="text-center">
                                         <span class="fs-3"> {{resturant.name}} </span>
-                                        
+                                        <br>
                                         <i class="fa-solid fa-cart-shopping fs-1 p-3"></i> 
                                         
                                     </div>
