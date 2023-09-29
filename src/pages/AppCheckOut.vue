@@ -24,7 +24,8 @@ export default {
                 'address' : this.address,
                 'delivery_time' : this.deliveryTime,
                 'note':this.note
-            }}else{
+            }
+            }else{
                 return null
             }
         }

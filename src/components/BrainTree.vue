@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         createCheckoutForm(){
-            if (this.formDataProp['name'] && this.formDataProp['surname'] && this.formDataProp['email'] && this.formDataProp['address'] && this.formDataProp['delivery_time'] && this.formDataProp) {
+            if (this.formDataProp && this.formDataProp['name'] && this.formDataProp['surname'] && this.formDataProp['email'] && this.formDataProp['address'] && this.formDataProp['delivery_time'] ) {
                 let new_cart = this.cart;
                 let rest_slug = this.$route.params.cart;
                 let price_total = this.total_price;
@@ -58,7 +58,6 @@ export default {
                                                 'note' : formData['note']
                                             }
                                         }).then((risp)=>{
-                                            console.log(risp.data.response);
                                             router.push({name: 'order', params:{slug: rest_slug}});
                                         }).catch((error) => {
                                             console.log('ziopera')
