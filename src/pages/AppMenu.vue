@@ -152,7 +152,7 @@ export default {
         <div class="container">
             <div class="row">
                 <!-- MENU -->
-                <div class="col-12 col-lg-8 card p-0 mb-4">
+                <div class="col-12 col-lg-8 p-0 mb-4">
                     <!-- Lista dei piatti disponibili -->
                     <ul class="list-group list-group-flush rounded-0">
                         <!-- Titolo del menu -->
@@ -185,19 +185,24 @@ export default {
                     <div class="col-12 col-lg-4">
                         <div class="cart-wrapper">
                             <!-- Lista dei piatti nel carrello -->
-                            <ul class="list-group list-group-flush pt-2">
+                            <ul class="list-group list-group-flush pt-3 trans_box">
                                 <!-- Titolo del carrello -->
-                                <li class="list-group-item bg-primary">
-                                    <h2 class="text-center fw-bold text-white text-uppercase">
-                                        CARRELLO <br> "{{ resturant.name }}" 
-                                    </h2>
+                                <li class="list-group-item ">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-cart-shopping fs-1 p-3"></i> 
+                                        
+                                    </div>
                                 </li>
                                 <!-- Iterazione sugli elementi nel carrello -->
                                 <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
                                     <!-- Nome del piatto nel carrello -->
-                                    <h3 class="text-primary fw-bold">{{ item.name }}</h3>
+                                    <h3 class="text-primary fw-bold">
+                                        {{ item.name }}
+                                    </h3>
                                     <!-- Prezzo del piatto nel carrello -->
-                                    <span class="fw-bold">{{ item.price.toFixed(2) }}€</span>
+                                    <div class="fw-bold p-2 mb-2">
+                                        {{ item.price.toFixed(2) }}€
+                                    </div>
                                     <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
                                     <div class="d-flex justify-content-between align-items-center">
                                         <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
@@ -209,12 +214,20 @@ export default {
                                     </div>
                                 </li>
                                 <!-- Riepilogo dell'ordine -->
-                                <div class="text-center bg-white pb-3">
-                                    <h2 class="bg-primary text-white fw-bold text-center p-2">RIEPILOGO ORDINE</h2>
+                                <div class="text-center pb-3 pt-3">
+                                    <h4 class="text-white text-center p-2">
+                                        Riepilogo ordine
+                                    </h4>
                                     <!-- Visualizzazione del prezzo totale -->
-                                    <h3 class="fw-bold">Prezzo Totale: {{ priceTotal.toFixed(2) }}€</h3>
-                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">Procedi al Pagamento</router-link>
-                                    <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">Svuota Carrello</button>
+                                    <h3 class="fw-bold text-white">
+                                        Prezzo Totale: {{ priceTotal.toFixed(2) }}€
+                                    </h3>
+                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">
+                                        Procedi al Pagamento
+                                    </router-link>
+                                    <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">
+                                        Svuota Carrello
+                                    </button>
                                 </div>
                             </ul>
                             <!-- Fine lista del carrello -->
@@ -244,27 +257,7 @@ export default {
         position: -webkit-sticky;
         position: sticky;
         top:0;
-    }
-
-    .card {
-        overflow: hidden;
-        border-radius: 15px !important;
-        border: none;
-        .img-fluid{
-            height: 200px;
-            object-fit: cover;
-        }
-        p.card-text{
-        height: 100px;
-        overflow: hidden;
-        }
-        h5.card-title{
-            height: 40px;
-            overflow: hidden;
-        }
-        img{
-            width: 100%;
-        }
+        box-shadow: 1px 2px 14px 5px #00000070;
     }
 
     .button_delive_two {
