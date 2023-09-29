@@ -189,6 +189,8 @@ export default {
                                 <!-- Titolo del carrello -->
                                 <li class="list-group-item ">
                                     <div class="text-center">
+                                        <span class="fs-3"> {{resturant.name}} </span>
+                                        
                                         <i class="fa-solid fa-cart-shopping fs-1 p-3"></i> 
                                         
                                     </div>
