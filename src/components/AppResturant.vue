@@ -107,9 +107,9 @@ export default {
       </div>
    </div>
 
-
+   <!-- INIZIO CONTENITORE DELLE CARD RISTORANTI -->
    <div class="container">
-      <div class="trans_box">
+      <div class="trans_box mb-5">
          <div class="row">
             <!-- Controllo se ci sono ristoranti -->
             <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
