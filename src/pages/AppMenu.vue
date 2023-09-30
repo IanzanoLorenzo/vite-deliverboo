@@ -120,11 +120,6 @@ export default {
 <template>
     <AppLoader  v-if="store.loading"/>  
     <div v-else class="pt-5 pb-5">
-        <div class="container">
-            <h1 class="mb-5 text-center text-white">
-                Benvenuto nel ristorante che hai appena selezionato! 
-            </h1> 
-        </div>
         <!--RISTORANTE SCELTO  -->
         <div class="container trans_box mb-5">
             <div class="row">
@@ -157,7 +152,7 @@ export default {
         </div>
         <!--FINE RISTORANTE SCELTO  -->
         <!-- PARAGRAFO -->
-        <div class="bg-warning mb-5 p-5">
+        <div class="bg-warning mb-5 p-5 border_paragraph">
             <div class="container">
                 <p class="text-white">
                     Qui in basso nel <span class="text-primary text-uppercase">menù</span> 
@@ -249,13 +244,13 @@ export default {
                                     <div class="row mb-4">
                                         <div class="col-9 p-2 p-lg-0">
                                             <!-- NOME PIATTO NEL CARRELLO -->
-                                            <span class="fs-5 text-white text-decoration-underline">
+                                            <span class="fs-5 text-white">
                                                 {{ item.name }}
                                             </span>                                       
                                         </div>
                                         <div class="col-3 p-1 p-lg-0 d-flex justify-content-end">
                                             <!-- PREZZO PIATTO -->
-                                            <span class="fs-5 text-white fw-bold text-decoration-underline">
+                                            <span class="fs-5 text-white fw-bold">
                                                 &euro; {{ item.price.toFixed(2) }}
                                             </span>
                                         </div>
@@ -289,14 +284,17 @@ export default {
                                 </li>
                                 <!-- RIEPILOGO ORDINE-->
                                 <div class="riepilogo text-center pb-3 pt-3">
-                                    <h4 class="text-white text-center p-2">
+                                    <h5 class="text-white text-center p-2">
                                         Riepilogo ordine
-                                    </h4>
+                                    </h5>
                                     <!-- PREZZO TOTALE -->
-                                    <h3 class="fw-bold text-white">
-                                        Prezzo Totale: {{ priceTotal.toFixed(2) }}€
-                                    </h3>
-                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">
+                                    <h4 class="text-warning mb-3">
+                                        Prezzo Totale: 
+                                        <strong>
+                                            {{ priceTotal.toFixed(2) }} &euro;
+                                        </strong>
+                                    </h4>
+                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary me-2 mb-lg-2">
                                         Procedi al Pagamento
                                     </router-link>
                                     <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">
@@ -323,6 +321,10 @@ export default {
         border-radius: 10px;
         padding: 25px 20px 25px 20px;
         box-shadow: 1px 2px 14px 5px #00000070;
+    }
+
+    .border_paragraph{
+        border-top: 3px solid $primary;
     }
 
     .cart-wrapper {
