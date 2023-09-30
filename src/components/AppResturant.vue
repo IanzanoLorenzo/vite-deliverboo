@@ -52,69 +52,127 @@ export default {
 </script>
 
 <template>
-    <div class="container pad_bot">
-         <!-- PARAGRAFO -->
-        <p class="text-white fs-5 lh-lg mb-3 pad_top_extra">
-        Che tu stia cercando i sapori autentici della cucina italiana, l'esotismo delle spezie orientali
-        o un gustoso hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
-        </p>
+   <div class="container pad_bot">
+      <!-- PARAGRAFO -->
+      <p class="text-white text-center fs-5 lh-lg mb-3 pad_top_extra">
+         Che tu stia cercando i sapori autentici della cucina italiana, l'esotismo delle spezie orientali
+         o un gustoso hamburger americano classico, siamo qui per soddisfare ogni tuo desiderio gastronomico.
+      </p>
 
-        <!-- CITAZIONE -->
-        <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
-            <blockquote class="blockquote">
-                <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">Alice Waters</figcaption>
-        </figure>
+      <!-- CITAZIONE -->
+      <figure class="text-center pt-5"><!--- NON TOCCARE QUESTE MISURE! se lo fai chiedi a Silvia :3 -->
+         <blockquote class="blockquote">
+            <p>"Ogni piatto è un viaggio in un luogo, in una cultura, in una tradizione."</p>
+         </blockquote>
+         <figcaption class="blockquote-footer">
+            Alice Waters
+         </figcaption>
+      </figure>
+   </div>
 
-        <p class="text-white display-6 mb-3 pt-5">
-        E tu, quale tradizione vorresti scoprire questa volta?
-        </p>
-        <div class="row mt-2">
-        <!-- RICERCA PER TIPOLOGIA -->
-            <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <!-- CHECKBOX -->
-                <div class="form-check form-check-inline" v-for="type in store.types" :key="type.id">
-                    <input class="form-check-input" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
-                    <!-- TIPOLOGIA -->
-                    <label class="form-check-label" :for="type.name+'_type'">
-                        <i :class="['fas', type.icon]"></i> {{ type.name }}
-                    </label>
-                </div>
-                <!-- PULSANTE FILTRA -->
-                <button class="btn btn-primary" @click="getResturants(1)">
-                Filtra
-                </button>
+   <div class="container-fluid bg-white mb-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-12  mt-4">
+               <div class="text-center">
+                  <p class="text-dark display-6 mb-3 pt-5">
+                     E tu, quale tradizione vorresti scoprire questa volta?
+                  </p>
+                  <hr class="mb-4">
+                  <div class="row">
+                     <div class="col-12 d-flex justify-content-center flex-wrap " role="search">
+                        <!-- CHECKBOX -->
+                        <div class="col-auto d-flex my-2" v-for="type in store.types" :key="type.id">
+                           <label class="check"> 
+                              <input class="" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
+                              <!-- NOME TIPOLOGIA RISTO -->
+                              <span class="" :for="type.name+'_type'">
+                                 {{ type.name }}                                
+                              </span>
+                           </label>
+                        </div>                                  
+                     </div>
+                     <div class="col">
+                        <!-- PULSANTE FILTRA -->
+                        <button class="btn button_filter m-5" @click="getResturants(1)">
+                           Filtra
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+      </div>
+   </div>
+
+
+   <div class="container">
+      <div class="trans_box">
+         <div class="row">
+            <!-- Controllo se ci sono ristoranti -->
+            <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
+               Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
+            </div>
+            <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
+            <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in store.resturants" :key="resturant.id">
+               <!--***** RESTURANT CARD ***** -->
+               <ResturantCard :resturant="resturant"/>
+               <!--**** FINE RESTURANT CARD **** -->                      
             </div>
 
-            <div class="trans_box">
-                <div class="row">
-                    <!-- Controllo se ci sono ristoranti -->
-                    <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
-                        Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
-                    </div>
-                    <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-                    <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in store.resturants" :key="resturant.id">
-                        <!--***** RESTURANT CARD ***** -->
-                        <ResturantCard :resturant="resturant"/>
-                        <!--**** FINE RESTURANT CARD **** -->                      
-                    </div>
-
-                    <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants"/>
-                </div>
-            </div>
-        </div>
-    </div>
+            <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants"/>
+         </div>
+      </div>
+   </div>
+   
+    
 </template>
 <style lang="scss" scoped>
   @import '../styles/_variables.scss';
   @import '../styles/generals.scss';
 
+  //CHECKBOX
+label.check {
+  cursor: pointer;
+}
+
+label.check input {
+   visibility: hidden;
+   pointer-events: none;
+}
+
+label.check span {
+  padding: 2px 14px;
+   border: 1px solid $dark;
+   display: inline-block;
+   color:$dark;
+   border-radius: 8px;
+   text-transform: uppercase;
+}
+label.check input:checked + span {
+  border-color: $warning;
+   background-color: $warning;
+   color: #fff;
+}
+
+.button_filter {
+    background-color: $primary;
+    color: white;
+}
+.button_filter:hover{
+    background: none;
+    border: 1px solid $dark;
+    color: $dark;
+}
+
+//FINE CHECKBOX
   .pad_bot{
       padding-bottom: 100px;
   }
   .pad_top_extra{
-      padding-top: 80px;
+      padding-top: 130px;
   }
   //CITAZIONE
   figure{
