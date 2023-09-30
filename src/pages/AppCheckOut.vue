@@ -35,37 +35,40 @@ export default {
 <template>
     <div class="container margin card mt-5">
         <h2 class="text-center mt-3">Checkout</h2>
-        <div class="row ">
-            <div class="col-12 col-md-6 pt-4">
-                <div class="mb-3">
-                    <label class="form-label">Nome*</label>
-                    <input type="text" class="form-control" v-model="customerName" required>
+        <form @submit.prevent>
+            <div class="row">
+                <div class="col-12 col-md-6 pt-4">
+    
+                    <div class="mb-3">
+                        <label class="form-label">Nome*</label>
+                        <input type="text" class="form-control" v-model="customerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cognome*</label>
+                        <input type="text" class="form-control" v-model="customerSurname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email*</label>
+                        <input type="email" class="form-control" v-model="customerEmail" autocomplete="email" required pattern=".+@.+\..+" placeholder="mario@mail.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Indirizzo*</label>
+                        <input type="text" class="form-control" v-model="address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Orario*</label>
+                        <input type="time" class="form-control" v-model="deliveryTime" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Note dell'ordine</label>
+                        <textarea class="form-control" cols="30" rows="3" v-model="note"></textarea>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Cognome*</label>
-                    <input type="text" class="form-control" v-model="customerSurname" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email*</label>
-                    <input type="email" class="form-control" v-model="customerEmail">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Indirizzo*</label>
-                    <input type="text" class="form-control" v-model="address">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Orario*</label>
-                    <input type="time" class="form-control" v-model="deliveryTime">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Note dell'ordine</label>
-                    <textarea class="form-control" cols="30" rows="3" v-model="note"></textarea>
+                <div class="col-12 col-md-6">
+                    <BrainTree :formDataProp="dataForm()"/>   
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <BrainTree :formDataProp="dataForm()"/>   
-            </div>
-        </div>
+        </form>
     </div>
 </template>
 <style lang="scss" scoped>
