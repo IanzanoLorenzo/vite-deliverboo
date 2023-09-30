@@ -118,8 +118,7 @@ export default {
 }
 </script>
 <template>
-    <AppLoader  v-if="store.loading"/>
-    
+    <AppLoader  v-if="store.loading"/>  
     <div v-else class="pt-5 pb-5">
         <!--RISTORANTE SCELTO  -->
         <div class="container trans_box mb-5">
@@ -130,16 +129,20 @@ export default {
                     <img v-else :src="`${store.basicUrl}storage/${resturant.cover_image}`" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-6">
-                     <!-- Dati risto -->
+                    <!-- Dati risto -->
                     <div class="">
-                        <h2 class="text-white mt-4">
-                            {{ resturant.name }}
-                        </h2>
-                        <div class="text-white mb-5">
+                        <h4 class="mb-4 mt-4 mt-lg-0 text-white">
+                            Hai scelto di ordinare da
+                            <strong class="text-warning mt-4">
+                                {{ resturant.name }}
+                            </strong>
+                        </h4>                       
+                        <h6 class="text-white mb-5"> 
+                            <i class="fa-solid fa-location-dot text-warning fs-2 me-2"></i>
                             <em>
                                 {{ resturant.address }}
                             </em>
-                        </div>
+                        </h6>
                         <div class="fs-5 badge bg-primary mx-2 mt-3" v-for="type in resturant.types" :key="type.id">
                             {{ type.name }}
                         </div>
@@ -148,33 +151,73 @@ export default {
             </div>
         </div>
         <!--FINE RISTORANTE SCELTO  -->
-
+        <!-- PARAGRAFO -->
+        <div class="bg-warning mb-5 p-5 border_paragraph">
+            <div class="container">
+                <p class="text-white">
+                    Qui in basso nel <span class="text-primary text-uppercase">menù</span> 
+                    hai una vasta selezione di piatti deliziosi tra cui scegliere.
+                    Aggiungi i tuoi piatti preferiti al <span class="text-primary text-uppercase">carrello</span> 
+                    e preparati per un'esperienza culinaria
+                    straordinaria a domicilio. <br>
+                    <br>
+                    Quando hai finito di selezionare tutte le pietanze ti invitiamo a dare  
+                    un'ultima occhiata nella sezione <span class="text-primary"> Riepilogo ordine</span> 
+                    che si trova nel carrello. In questo modo, prima di procedere al pagamento,
+                    sarai sicuro di avere tutto ciò di cui hai bisogno. 
+                    Se desideri apportare modifiche o hai richieste speciali, non esitare a farcele 
+                    sapere.
+                    <br>
+                    <br>
+                    Il tuo pasto perfetto è solo a un click di distanza. Grazie per aver scelto 
+                    <span class="fw-bold text-white">
+                        DeliveBoo
+                    </span>
+                    per il tuo cibo a domicilio.
+                </p>
+                <div class="text-center text-white fs-4">
+                    Buon appetito!
+                </div>
+            </div>
+        </div>
+        <!-- FINE PARAGRAFO -->
         <div class="container">
             <div class="row">
                 <!-- MENU -->
                 <div class="col-12 col-lg-8 p-0 mb-4">
                     <!-- Lista dei piatti disponibili -->
                     <ul class="list-group list-group-flush rounded-0">
-                        <!-- Titolo del menu -->
+                        <!-- TITOLO MENU-->
                         <li class="list-group-item bg-primary">
                             <h2 class="text-white text-center mt-2">
+                                <i class="fa-solid fa-kitchen-set me-5"></i>
                                 MENU'
+                                <i class="fa-solid fa-kitchen-set  ms-5"></i>
                             </h2>
                         </li>
-                        <!-- Iterazione sui piatti nel menu -->
+                        <!-- PIATTI DEL MENU -->
                         <li class="list-group-item" v-for="dish in dishes" :key="dish.id">
-                            <!-- Nome del piatto -->
-                            <h2 class="text-primary fw-bold">
-                                {{ dish.name }}
-                            </h2>
-                            <!-- Ingredienti del piatto -->
-                            <span><em>{{ dish.ingredients }}</em></span>
-                            <!-- Prezzo del piatto e pulsante "Aggiungi al carrello" -->
-                            <div class="d-flex justify-content-between">
-                                <span class="fw-bold">
-                                    {{ dish.price }}€
-                                </span>
-                                <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(dish)"><i class="fa-solid fa-plus fs-6"></i></button>
+                            <div class="row">
+                                <div class="col-10 d-flex flex-column">
+                                    <!-- NOME PIATTO-->
+                                    <h4 class="text-primary fw-bold mt-2">
+                                        {{ dish.name }}
+                                    </h4>
+                                    <!-- INGREDIENT -->
+                                    <span class="">
+                                        <em>{{ dish.ingredients }}</em>
+                                    </span>
+                                    <!-- PREZZO-->                                    
+                                    <span class="fw-bold fs-5 pt-2 pb-2 mt-3">
+                                       &euro; {{ dish.price }} 
+                                    </span>                                   
+                                </div>
+                                <div class="col-2 d-flex justify-content-end align-items-center">
+                                    <!-- PULSANTE NEL MENU -->
+                                    <button class="rounded-circle button_menu" @click="addToCart(dish)">
+                                        <i class="fa-solid fa-plus fs-6"></i>
+                                    </button>
+                                </div>   
                             </div>
                         </li>
                     </ul>
@@ -183,48 +226,75 @@ export default {
 
                 <!-- CARRELLO --> 
                     <div class="col-12 col-lg-4">
-                        <div class="cart-wrapper">
-                            <!-- Lista dei piatti nel carrello -->
-                            <ul class="list-group list-group-flush pt-3 trans_box">
-                                <!-- Titolo del carrello -->
+                        <div class="cart-wrapper rounded-3">                           
+                            <ul class="pt-3 trans_box">                             
                                 <li class="list-group-item ">
                                     <div class="text-center">
-                                        <span class="fs-3"> {{resturant.name}} </span>
+                                        <!-- NOME RISTO -->
+                                        <span class="fs-3 text-warning">
+                                             {{resturant.name}}
+                                        </span>
                                         <br>
-                                        <i class="fa-solid fa-cart-shopping fs-1 p-3"></i> 
-                                        
+                                        <!-- ICONA CARRELLO -->
+                                        <i class="fa-solid fa-cart-shopping fs-1 p-3 text-warning"></i>                               
                                     </div>
                                 </li>
                                 <!-- Iterazione sugli elementi nel carrello -->
-                                <li class="list-group-item" v-for="(item, index) in cart" :key="item.id">
-                                    <!-- Nome del piatto nel carrello -->
-                                    <h3 class="text-primary fw-bold">
-                                        {{ item.name }}
-                                    </h3>
-                                    <!-- Prezzo del piatto nel carrello -->
-                                    <div class="fw-bold p-2 mb-2">
-                                        {{ item.price.toFixed(2) }}€
+                                <li class="list-group-item mt-4" v-for="(item, index) in cart" :key="item.id">
+                                    <div class="row mb-4">
+                                        <div class="col-9 p-2 p-lg-0">
+                                            <!-- NOME PIATTO NEL CARRELLO -->
+                                            <span class="fs-5 text-white">
+                                                {{ item.name }}
+                                            </span>                                       
+                                        </div>
+                                        <div class="col-3 p-1 p-lg-0 d-flex justify-content-end">
+                                            <!-- PREZZO PIATTO -->
+                                            <span class="fs-5 text-white fw-bold">
+                                                &euro; {{ item.price.toFixed(2) }}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <!-- Visualizzazione della quantità e pulsante "Rimuovi" -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <button class="btn btn-sm rounded-circle button_delive_two" @click="removeFromCart(item, index)"><i class="fa-solid fa-minus fs-6"></i></button>
-                                        <span>Quantità: <span class="text-danger fw-bold">{{ item.quantity }}</span></span>
-                                        <button class="btn btn-sm rounded-circle button_delive_two" @click="addToCart(item)"><i class="fa-solid fa-plus fs-6"></i></button>
+                                    
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <!-- PULSANTE DIMINUISCI QUANTITA-->
+                                        <button class="rounded-circle button_cart" @click="removeFromCart(item, index)">
+
+                                            <i class="fa-solid fa-minus fs-6"></i>
+                                        </button>
+                                        <!-- QUANTITA -->
+                                        <span class="text-white">
+                                            Quantità: 
+                                            <span class="text-warning fw-bold fs-1 ms-1">
+                                             {{ item.quantity }}
+                                            </span>
+                                        </span>
+                                        <!-- PULSANTE AUMENTA QUANTITA-->
+                                        <button class=" rounded-circle button_cart" @click="addToCart(item)">
+                                            <i class="fa-solid fa-plus fs-6"></i>
+                                        </button>
                                     </div>
+
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <button class="btn btn-primary" @click="removeDishFromCart(index)">Rimuovi piatto</button>
+                                        <button class="btn btn-primary" @click="removeDishFromCart(index)">
+                                            Rimuovi piatto
+                                        </button>
                                     </div>
+                                    <hr class="text-warning">
                                 </li>
-                                <!-- Riepilogo dell'ordine -->
-                                <div class="text-center pb-3 pt-3">
-                                    <h4 class="text-white text-center p-2">
+                                <!-- RIEPILOGO ORDINE-->
+                                <div class="riepilogo text-center pb-3 pt-3">
+                                    <h5 class="text-white text-center p-2">
                                         Riepilogo ordine
+                                    </h5>
+                                    <!-- PREZZO TOTALE -->
+                                    <h4 class="text-warning mb-3">
+                                        Prezzo Totale: 
+                                        <strong>
+                                            {{ priceTotal.toFixed(2) }} &euro;
+                                        </strong>
                                     </h4>
-                                    <!-- Visualizzazione del prezzo totale -->
-                                    <h3 class="fw-bold text-white">
-                                        Prezzo Totale: {{ priceTotal.toFixed(2) }}€
-                                    </h3>
-                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary">
+                                    <router-link v-if="cart.length > 0" :to="{name: 'checkout', params :{ 'cart' : resturant.slug } }" class="btn btn-primary me-2 mb-lg-2">
                                         Procedi al Pagamento
                                     </router-link>
                                     <button  v-if="cart.length > 0" class="btn btn-dark" @click="deleteCart()">
@@ -234,10 +304,8 @@ export default {
                             </ul>
                             <!-- Fine lista del carrello -->
                         </div>
-                    </div>
-                
+                    </div>              
                 <!-- CARRELLO -->
-
             </div>
         </div>
     </div>
@@ -255,6 +323,10 @@ export default {
         box-shadow: 1px 2px 14px 5px #00000070;
     }
 
+    .border_paragraph{
+        border-top: 3px solid $primary;
+    }
+
     .cart-wrapper {
         position: -webkit-sticky;
         position: sticky;
@@ -262,20 +334,38 @@ export default {
         box-shadow: 1px 2px 14px 5px #00000070;
     }
 
-    .button_delive_two {
-        background-color: $primary;
-        color: white;
+    .button_menu {
+        color: $primary;
+        background-color: white;
+        border: 1px solid $primary;
         display: flex;
         align-items: center;
         justify-content: center;
         height: 40px;
         width: 40px;
+
     }
     
-    .button_delive_two:hover {
-        background: white;
-        color: $primary;
+    .button_menu:hover {
+        background-color: $primary;
+        color: white;
         border: 1px solid $primary;
     }
     
+    .button_cart{
+        color: $white;
+        background-color: $primary;
+        border: 1px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 25px;
+        width: 25px
+    }
+
+    .button_cart:hover {
+        background-color: $warning;
+        color: $dark;
+        border: 1px solid $warning;
+    }
 </style>
