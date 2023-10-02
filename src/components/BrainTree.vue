@@ -118,14 +118,10 @@ export default {
     </div>
     <div v-else>
         <div class="alert alert-warning" v-if="errorMessage">{{ errorMessage }}</div>
-        <a href="#" @click="createCheckoutForm">
-        Inserisci il metodo di pagamento
-        </a>
         <div id="dropin-container"></div>
-        <button id="submit-button" class="button btn btn-primary" :disabled="paymentProcessing">
-        {{ paymentProcessing ? 'Pagamento in corso...' : 'Paga' }}
+        <button @click="createCheckoutForm" id="submit-button" class="button btn btn-primary mt-3" :disabled="paymentProcessing">
+        {{ paymentProcessing ? 'Pagamento in corso...' : 'Paga:' }}<strong v-if="paymentProcessing">&euro;{{ total_price.toFixed(2) }} </strong>
         </button>
-        <span>Prezzo da pagare: &euro;{{ total_price.toFixed(2) }}</span>
     </div>
 </template>
 <style lang="scss" scoped>
