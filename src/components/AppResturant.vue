@@ -174,7 +174,7 @@ label.check input:checked + span {
   //CITAZIONE
   figure{
       .blockquote, .blockquote-footer{
-          color: $dark;
+         color: $dark;
             
       }
   }  
@@ -184,7 +184,8 @@ label.check input:checked + span {
     backdrop-filter: blur(3px);
     border-radius: 10px;
     padding: 25px 20px 25px 20px;
-    margin-top: 30px;
+    margin-top: 108px;
+    margin-bottom: 153px;
     box-shadow: 1px 2px 14px 5px #00000070;
   }
 </style>
