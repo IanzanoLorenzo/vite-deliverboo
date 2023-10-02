@@ -19,7 +19,7 @@ export default {
 <template>
     <AppJumbotron/>
     <div class="bg_body">
-        <div class="container">
+        <div class="">
             <AppResturant/>
         </div>
     </div>
