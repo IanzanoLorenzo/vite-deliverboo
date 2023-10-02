@@ -45,7 +45,7 @@ export default {
     padding: 30px;
     margin: 30px;
     border-radius: 10px;
-    box-shadow: 0px 3px 10px 4px rgba(56, 55, 52, 0.383);
+    box-shadow: 0px 3px 8px 3px rgba(56, 55, 52, 0.285);
 
     position: relative;
     top: 275px;
