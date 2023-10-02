@@ -69,7 +69,7 @@ export default {
          </figcaption>
       </figure>
    </div>
-
+   <!-- FINE CITAZIONE -->
    <div class="container-fluid bg-white mb-5">
       <div class="container">
          <div class="row">
@@ -87,8 +87,11 @@ export default {
                               <input class="" type="checkbox" :id="type.name+'_type'" :value="type.id" v-model="selected_type">
                               <!-- NOME TIPOLOGIA RISTO -->
                               <span class="" :for="type.name+'_type'">
-                                 {{ type.name }}                                
+                                 {{ type.name }}     
+
+                                 <i :class="['fas', type.icon]" class="ms-3 fs-4"></i>                           
                               </span>
+                              <!-- ICONA TIPOLOGIA CUCINA -->
                            </label>
                         </div>                                  
                      </div>
@@ -102,17 +105,14 @@ export default {
                </div>
             </div>
          </div>
-
-
       </div>
    </div>
-
    <!-- INIZIO CONTENITORE DELLE CARD RISTORANTI -->
    <div class="container">
       <div class="trans_box mb-5">
          <div class="row">
             <!-- Controllo se ci sono ristoranti -->
-            <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
+            <div class="fs-3 text-white text-center mb-4" v-if="store.resturants.length === 0">
                Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
             </div>
             <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
@@ -121,13 +121,10 @@ export default {
                <ResturantCard :resturant="resturant"/>
                <!--**** FINE RESTURANT CARD **** -->                      
             </div>
-
             <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants"/>
          </div>
       </div>
-   </div>
-   
-    
+   </div>      
 </template>
 <style lang="scss" scoped>
   @import '../styles/_variables.scss';
