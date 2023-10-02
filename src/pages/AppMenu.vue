@@ -209,7 +209,7 @@ export default {
                                     </span>
                                     <!-- PREZZO-->                                    
                                     <span class="fw-bold fs-5 pt-2 pb-2 mt-3">
-                                       &euro; {{ dish.price }} 
+                                       &euro; {{ dish.price.toFixed(2) }} 
                                     </span>                                   
                                 </div>
                                 <div class="col-2 d-flex justify-content-end align-items-center">
@@ -315,6 +315,11 @@ export default {
     @import '../styles/_variables.scss';
     @import '../styles/generals.scss';
 
+    
+    .img-fluid{
+        height: 350px;
+        object-fit: cover;
+    }
     .trans_box{
         background-color: rgba(28, 13, 43, 0.64);
         backdrop-filter: blur(3px);
