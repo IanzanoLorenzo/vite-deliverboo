@@ -20,7 +20,9 @@ export default {
   },
   mounted() {
     try {
+      store.loading = true;
       this.getResturants();
+      store.loading = false;
     } catch (error) {
       console.error('c\'è stato un problema con la chiamata api')
     }
@@ -110,7 +112,7 @@ export default {
    <!-- INIZIO CONTENITORE DELLE CARD RISTORANTI -->
    <div class="container">
       <div class="trans_box mb-5">
-         <div class="row">
+         <div class="row" v-if="!store.loading">
             <!-- Controllo se ci sono ristoranti -->
             <div class="fs-3 text-white text-center" v-if="store.resturants.length === 0">
                Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
@@ -124,6 +126,7 @@ export default {
 
             <app-pagination :current-page="currentPage" :total-pages="totalPages" @page-change="getResturants"/>
          </div>
+         
       </div>
    </div>
    

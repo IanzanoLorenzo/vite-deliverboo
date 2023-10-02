@@ -8,7 +8,7 @@
         created() {
             this.cart = localStorage.getItem(this.$route.params.slug);
             console.log();
-            localStorage.removeItem(this.$route.params.slug);
+            localStorage.clear();
         },
     }
 </script>
