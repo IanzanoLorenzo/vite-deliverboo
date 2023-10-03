@@ -120,7 +120,7 @@ export default {
         <div class="alert alert-warning" v-if="errorMessage">{{ errorMessage }}</div>
         <div id="dropin-container"></div>
         <button @click="createCheckoutForm" id="submit-button" class="button btn btn-primary mt-3" :disabled="paymentProcessing">
-        {{ paymentProcessing ? 'Pagamento in corso...' : 'Paga:' }}<strong v-if="paymentProcessing">&euro;{{ total_price.toFixed(2) }} </strong>
+        {{ paymentProcessing ? 'Pagamento in corso...' : 'Paga:' }}<strong v-if="!paymentProcessing">&euro;{{ total_price.toFixed(2) }} </strong>
         </button>
     </div>
 </template>
