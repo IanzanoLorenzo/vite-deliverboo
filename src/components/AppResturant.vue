@@ -116,7 +116,7 @@ export default {
                Nessun ristorante trovato con il seguente filtraggio, prova a cambiare i filtri e cercare nuovamente
             </div>
             <!-- Iterazione sui ristoranti e visualizzazione del componente ResturantCard -->
-            <div v-else class="col-12 col-md-6 mb-5" v-for="resturant in store.resturants" :key="resturant.id">
+            <div v-else class="col-12 col-md-6 col-lg-4 mb-5" v-for="resturant in store.resturants" :key="resturant.id">
                <!--***** RESTURANT CARD ***** -->
                <ResturantCard :resturant="resturant"/>
                <!--**** FINE RESTURANT CARD **** -->                      
